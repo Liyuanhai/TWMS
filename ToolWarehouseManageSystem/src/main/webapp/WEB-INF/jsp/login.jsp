@@ -40,18 +40,18 @@
 
                                     <div class="space-6"></div>
 
-                                    <form action="\twms\logging" method="post">
+                                    <form id="user" action="\twms\logging" method="post">
                                         <fieldset>
                                             <label class="block clearfix">
 														<span class="block input-icon input-icon-right">
-															<input name="username" type="text" class="form-control" placeholder="用户名" required=""/>
+															<input name="pid" type="text" class="form-control" placeholder="用户名" required=""/>
 															<i class="ace-icon fa fa-user"></i>
 														</span>
                                             </label>
 
                                             <label class="block clearfix">
 														<span class="block input-icon input-icon-right">
-															<input name="password" type="password" class="form-control" placeholder="密码" required=""/>
+															<input name="pwd" type="password" class="form-control" placeholder="密码" required=""/>
 															<i class="ace-icon fa fa-lock"></i>
 														</span>
                                             </label>

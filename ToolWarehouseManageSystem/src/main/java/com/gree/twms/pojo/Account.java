@@ -15,13 +15,17 @@ public class Account {
 
     private String pname;
 
-    private Date time;
+    private Date borrowtime;
 
     private String remarks1;
 
     private String remarks2;
 
     private String remarks3;
+
+    private String remarks4;
+
+    private String remarks5;
 
     public String getTid() {
         return tid;
@@ -71,12 +75,12 @@ public class Account {
         this.pname = pname == null ? null : pname.trim();
     }
 
-    public Date getTime() {
-        return time;
+    public Date getBorrowtime() {
+        return borrowtime;
     }
 
-    public void setTime(Date time) {
-        this.time = time;
+    public void setBorrowtime(Date borrowtime) {
+        this.borrowtime = borrowtime;
     }
 
     public String getRemarks1() {
@@ -101,5 +105,21 @@ public class Account {
 
     public void setRemarks3(String remarks3) {
         this.remarks3 = remarks3 == null ? null : remarks3.trim();
+    }
+
+    public String getRemarks4() {
+        return remarks4;
+    }
+
+    public void setRemarks4(String remarks4) {
+        this.remarks4 = remarks4 == null ? null : remarks4.trim();
+    }
+
+    public String getRemarks5() {
+        return remarks5;
+    }
+
+    public void setRemarks5(String remarks5) {
+        this.remarks5 = remarks5 == null ? null : remarks5.trim();
     }
 }

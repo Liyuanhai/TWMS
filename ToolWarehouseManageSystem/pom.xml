@@ -14,7 +14,6 @@
     <artifactId>spring-boot-starter-parent</artifactId>
     <version>1.5.1.RELEASE</version>
   </parent>
-
   <properties>
     <mybatis-spring-boot>1.2.0</mybatis-spring-boot>
     <mysql-connector>5.1.39</mysql-connector>
@@ -70,7 +69,29 @@
       <artifactId>junit</artifactId>
       <version>4.12</version>
     </dependency>
-
+ <!--   &lt;!&ndash;thymeleaf集成&ndash;&gt;
+    <dependency>
+      <groupId>org.springframework.boot</groupId>
+      <artifactId>spring-boot-starter-thymeleaf</artifactId>
+    </dependency>
+    &lt;!&ndash;非严格HTML5模式依赖&ndash;&gt;
+    <dependency>
+      <groupId>net.sourceforge.nekohtml</groupId>
+      <artifactId>nekohtml</artifactId>
+      <version>1.9.22</version>
+    </dependency>
+    &lt;!&ndash;thymeleaf的layout依赖&ndash;&gt;
+    <dependency>
+      <groupId>nz.net.ultraq.thymeleaf</groupId>
+      <artifactId>thymeleaf-layout-dialect</artifactId>
+      <version>2.2.1</version>
+    </dependency>-->
+    <!--spring热部署-->
+    <dependency>
+      <groupId>org.springframework.boot</groupId>
+      <artifactId>spring-boot-devtools</artifactId>
+      <optional>true</optional> <!-- 这个需要为 true 热部署才有效 -->
+    </dependency>
   </dependencies>
   <!--逆向工程插件-->
   <build>
@@ -97,5 +118,4 @@
 
 
   </build>
-
 </project>

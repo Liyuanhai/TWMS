@@ -2,6 +2,9 @@ package com.gree.twms.dao;
 
 import com.gree.twms.pojo.User;
 
+import org.springframework.stereotype.Component;
+
+@Component("userMapper")
 public interface UserMapper {
     int deleteByPrimaryKey(String pid);
 
@@ -14,6 +17,4 @@ public interface UserMapper {
     int updateByPrimaryKeySelective(User record);
 
     int updateByPrimaryKey(User record);
-
-    User selectIsValidUser(String pid, String pwd);
 }
