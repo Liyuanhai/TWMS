@@ -160,4 +160,8 @@
       remarks5 = #{remarks5,jdbcType=VARCHAR}
     where pID = #{pid,jdbcType=VARCHAR}
   </update>
+
+  <select id="selectIsValidUser" parameterType="com.gree.twms.pojo.User" resultMap="BaseResultMap">
+    SELECT * FROM USER WHERE pID = #{pid,jdbcType=VARCHAR} AND pwd = #{pwd,jdbcType=VARCHAR}
+  </select>
 </mapper>

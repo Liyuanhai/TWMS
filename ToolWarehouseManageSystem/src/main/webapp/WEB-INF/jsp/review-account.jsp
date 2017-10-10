@@ -11,7 +11,7 @@
 <head>
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/>
     <meta charset="utf-8"/>
-    <title>仓库管理</title>
+    <title>评审表台帐</title>
     <meta name="description" content="Restyling jQuery UI Widgets and Elements"/>
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0"/>
     <link rel="stylesheet" href="/css/bootstrap.min.css"/>
@@ -48,7 +48,7 @@
                     <a href="/twms/index">系统首页</a>
                 </li>
                 <li>
-                    <a href="javascript:void(0)">仓库管理</a>
+                    <a href="#">评审表台帐</a>
                 </li>
             </ul><!-- /.breadcrumb -->
         </div>
@@ -66,17 +66,21 @@
                             <div class="col-xs-12">
 
                                 <div class="table-header" style="font-size: x-large;">
-                                    仓库信息管理
+                                    评审表台帐管理
                                 </div>
                                 <div style="padding-bottom: 10px;padding-top: 10px;text-align: center;display:block;">
-                                    <label style="font-size: large;padding-bottom: 5px;padding-left: 20px;">查询库存：</label>
+                                    <label style="font-size: large;padding-bottom: 5px;padding-left: 20px;">查询评审表：</label>
                                     <select class="" id="form-field-select-1"
                                             style="height: 35px;margin-left: 10px;">
                                         <option value="">请选择查询条件
                                         </option>
-                                        <option value="AL">按货架编号查询
+                                        <option value="AL">按工装名称查询
                                         </option>
-                                        <option value="AK">按工装编号查询
+                                        <option value="AL">按工装编号查询
+                                        </option>
+                                        <option value="AK">按PCB型号查询
+                                        </option>
+                                        <option value="AK">按评审结论查询
                                         </option>
                                     </select>
                                     <span class="input-icon">
@@ -90,24 +94,6 @@
                                     <input type="submit" value="搜索"
                                            class="btn btn-sm btn-primary"
                                            id="searchUser"/>
-                                    &nbsp;&nbsp;&nbsp;&nbsp;
-                                    <div class="fileupload fileupload-new"
-                                         data-provides="fileupload"
-                                         style="display: inline-block;">
-                                         <span class="btn-file btn btn-primary" style="font-size: small;height: 35px;">
-                                             <span class="fileupload-new ">导入库存信息</span>
-                                             <span class="fileupload-exists">更改文件</span>
-                                             <input type="file" name="file">
-                                         </span>
-                                        <span class="fileupload-preview"></span>
-                                        <a href="#"
-                                           class="close fileupload-exists"
-                                           data-dismiss="fileupload"
-                                           style="float: none">x</a>
-                                        <input type="submit"
-                                               class="btn btn-sm btn-primary"
-                                               value="确认上传">
-                                    </div>
                                 </div>
 
                                 <div class="table-responsive">
@@ -122,13 +108,17 @@
                                                     <span class="lbl"></span>
                                                 </label>
                                             </th>
-                                            <th class="center">货架编号</th>
-                                            <th class="center">货架位置</th>
-                                            <th class="center">工装编号</th>
                                             <th class="center">工装名称</th>
-                                            <th class="center">兼容版本</th>
-                                            <th class="center">制作时间</th>
-                                            <th class="center">库存状态</th>
+                                            <th class="center">PCB型号</th>
+                                            <th class="center">工装编号</th>
+                                            <th class="center">评审时间</th>
+                                            <th class="center">评审结论</th>
+                                            <th class="center">编制</th>
+                                            <th class="center">会签</th>
+                                            <th class="center">审核</th>
+                                            <th class="center">批准</th>
+                                            <th class="center">附件</th>
+                                            <th class="center">备注</th>
                                             <th class="center">操作</th>
                                         </tr>
                                         </thead>
@@ -142,20 +132,19 @@
                                                 </label>
                                             </td>
 
-                                            <td>037667</td>
-                                            <td>李元海</td>
-                                            <td>男</td>
-                                            <td>变频一班</td>
-                                            <td>变频一班</td>
-                                            <td>变频一班</td>
-                                            <td>变频一班</td>
-
+                                            <td>测试</td>
+                                            <td>测试</td>
+                                            <td>测试</td>
+                                            <td>测试</td>
+                                            <td>测试</td>
+                                            <td>测试</td>
+                                            <td>测试</td>
+                                            <td>测试</td>
+                                            <td>测试</td>
+                                            <td>测试</td>
+                                            <td>测试</td>
                                             <td>
                                                 <%--弹窗按钮--%>
-                                                <a href="#modal-table" role="button" class="btn btn-xs btn-info" data-toggle="modal">
-                                                <i class="ace-icon fa fa-pencil bigger-120"></i>
-                                                </a>
-
                                                 <a href="#modal-table" role="button" class="btn btn-xs btn-danger" data-toggle="modal">
                                                 <i class="ace-icon fa fa-trash-o bigger-120"></i>
                                                 </a>
@@ -208,7 +197,7 @@
                                                     aria-hidden="true">
                                                 <span class="white">&times;</span>
                                             </button>
-                                            修改库存信息
+                                            添加用户
                                         </div>
                                     </div>
 
@@ -218,19 +207,23 @@
                                             <div class="form-group"
                                                  style="padding-top: 10px;padding-left: 120px;">
                                                 <label class="col-sm-3 control-label no-padding-right"
-                                                       for="form-field-1"> 工装编号：</label>
+                                                       for="form-field-1"> 编号：</label>
 
                                                 <div class="col-sm-9">
-                                                    <input type="text" id="form-field-1" class="col-xs-10 col-sm-5"/>
+                                                    <input type="text" id="form-field-1"
+                                                           placeholder="请输入用户编号"
+                                                           class="col-xs-10 col-sm-5"/>
                                                 </div>
                                             </div>
 
                                             <div class="form-group" style="padding-left: 120px;">
                                                 <label class="col-sm-3 control-label no-padding-right"
-                                                       for="form-field-1-1">工装型号： </label>
+                                                       for="form-field-1-1">姓名： </label>
 
                                                 <div class="col-sm-9">
-                                                    <input type="text" id="form-field-1-1" class=" col-xs-10 col-sm-5"/>
+                                                    <input type="text" id="form-field-1-1"
+                                                           placeholder="输入用户姓名"
+                                                           class=" col-xs-10 col-sm-5"/>
                                                 </div>
                                             </div>
 
@@ -239,7 +232,7 @@
 
                                             <div class="form-group" style="padding-left: 120px;">
                                                 <label class="col-sm-3 control-label no-padding-right"
-                                                       for="form-field-2">工装名称： </label>
+                                                       for="form-field-2">密码： </label>
 
                                                 <div class="col-sm-9">
                                                     <input type="text" id="form-field-2"
@@ -274,7 +267,8 @@
                                                 <div class="col-sm-9">
                                                     <!-- #section:plugins/bootstrap.typeahead-js -->
                                                     <div class="pos-rel">
-                                                        <select class="form-control" style="width: 135px;">
+                                                        <select class="form-control"
+                                                                style="width: 135px;" id="">
                                                             <option value="">请选择所属班组</option>
                                                             <option value="AL">未提交</option>
                                                             <option value="AK">已提交</option>
@@ -291,7 +285,8 @@
                                                 <div class="col-sm-9">
                                                     <!-- #section:plugins/bootstrap.typeahead-js -->
                                                     <div class="pos-rel">
-                                                        <select class="form-control" style="width: 135px;">
+                                                        <select class="form-control"
+                                                                style="width: 135px;" id="">
                                                             <option value="">请选择用户角色</option>
                                                             <option value="AL">普通员工</option>
                                                             <option value="AK">仓库管理员</option>

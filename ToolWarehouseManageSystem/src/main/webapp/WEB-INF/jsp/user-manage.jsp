@@ -6,6 +6,8 @@
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -71,15 +73,15 @@
                                 <div style="padding-bottom: 10px;padding-top: 10px;text-align: center">
                                     <label style="font-size: large;padding-bottom: 5px;padding-left: 20px;">查询用户：</label>
                                     <select class="" id="form-field-select-1" style="height: 35px;margin-left: 10px;">
-                                        <option value="">请选择查询条件
+                                        <option value="pname">请选择查询条件
                                         </option>
-                                        <option value="AL">按姓名查找
+                                        <option value="pname">按姓名查找
                                         </option>
-                                        <option value="AK">按员工编号查找
+                                        <option value="pid">按员工编号查找
                                         </option>
                                     </select>
                                     <span class="input-icon">
-                                                            <input type="text" placeholder="请输入关键字 ..."
+                                                            <input type="text" placeholder="请输入关键字 ..." required=""
                                                                    class="nav-search-input" id="nav-search-input"
                                                                    autocomplete="off"/>
                                                             <i class="ace-icon fa fa-search nav-search-icon"></i>
@@ -89,62 +91,10 @@
                                            id="searchUser"/>
                                     &nbsp;&nbsp;&nbsp;&nbsp;
                                     <%--弹窗按钮--%>
-                                    <a href="#modal-table" role="button" class="btn btn-sm btn-primary" data-toggle="modal">添加用户</a>
+                                    <a href="#addUser" role="button" class="btn btn-sm btn-primary" data-toggle="modal">添加用户</a>
                                 </div>
-                                <%--<table width="100%" class="CSSearchTbl" cellpadding="0"--%>
-                                       <%--cellspacing="0">--%>
-                                    <%--<tr>--%>
-                                        <%--<div style="padding-top: 20px">--%>
-                                            <%--<td class="left" style="padding-top: 5px;font-size: large;padding-bottom: 10px;padding-left: 20px;">导入用户数据:</td>--%>
-                                            <%--<td class="right" style="padding-top: 5px;margin-left: -20px">--%>
-                                                <%--<form class="form-search">--%>
-                                                    <%--<div class="pos-rel" style="display: inline-block;">--%>
-                                                        <%--<div class="fileupload fileupload-new" data-provides="fileupload" style="display: block;">--%>
-                                                             <%--<span class="btn btn-file btn-primary" style="height: 35px;">--%>
-                                                                 <%--<span class="fileupload-new " >选择文件</span>--%>
-                                                                 <%--<span class="fileupload-exists">更改文件</span>--%>
-                                                                 <%--<input type="file" name="file">--%>
-                                                             <%--</span>--%>
-                                                            <%--<span class="fileupload-preview"></span>--%>
-                                                            <%--<a href="#"--%>
-                                                               <%--class="close fileupload-exists"--%>
-                                                               <%--data-dismiss="fileupload"--%>
-                                                               <%--style="float: none">x</a>--%>
-                                                            <%--<input type="submit" class="btn btn-sm btn-primary" value="确认上传">--%>
-
-                                                            <%--&lt;%&ndash;弹窗按钮&ndash;%&gt;--%>
-                                                            <%--<a href="#modal-table" role="button" class="btn btn-sm btn-primary" data-toggle="modal">添加用户</a>--%>
-
-                                                            <%--<select class="" id="form-field-select-1" style="height: 35px;margin-left: 400px;">--%>
-                                                                <%--<option value="">请选择查询条件--%>
-                                                                <%--</option>--%>
-                                                                <%--<option value="AL">按姓名查找--%>
-                                                                <%--</option>--%>
-                                                                <%--<option value="AK">按员工编号查找--%>
-                                                                <%--</option>--%>
-                                                            <%--</select>--%>
-                                                            <%--<span class="input-icon">--%>
-                                                            <%--<input type="text" placeholder="请输入关键字 ..."--%>
-                                                                   <%--class="nav-search-input" id="nav-search-input"--%>
-                                                                   <%--autocomplete="off"/>--%>
-                                                            <%--<i class="ace-icon fa fa-search nav-search-icon"></i>--%>
-                                                            <%--</span>--%>
-                                                            <%--<input type="submit" value="搜索"--%>
-                                                                   <%--class="btn btn-sm btn-primary"--%>
-                                                                   <%--id="searchUser"/>--%>
-                                                        <%--</div>--%>
-                                                    <%--</div>--%>
-                                                <%--</form>--%>
-                                            <%--</td>--%>
-                                        <%--</div>--%>
-                                    <%--</tr>--%>
-
-                                <%--</table>--%>
-
                                 <div class="table-responsive">
-
-                                    <table id="sample-table-2"
-                                           class="table table-striped table-bordered table-hover">
+                                    <table id="sample-table-2" class="table table-striped table-bordered table-hover">
                                         <thead >
                                         <tr >
                                             <th class="center">
@@ -164,6 +114,37 @@
                                         </thead>
 
                                         <tbody class="center">
+                                        <%--foreach循环显示用户列表
+                                        <c:forEach var="user" items="${userList}">
+                                            <input name="fileIDs" value="${userList.getId()}" type="hidden">
+
+                                            <tr>
+                                                <td class="center">
+                                                    <label class="position-relative">
+                                                        <input type="checkbox" class="ace"/>
+                                                        <span class="lbl"></span>
+                                                    </label>
+                                                </td>
+                                                <td style="text-align:left; padding-left:50px;"><input type="checkbox" name="fileList" value="" />   </td>
+                                                <td>
+                                                    <c:url value="/downloadZip" var="downurl">
+                                                        <c:param name="fileList" value="asdfa"></c:param>
+                                                        <c:param name="courseName" value="asdf"></c:param>
+                                                    </c:url>
+                                                        ${userList.getfName()}
+                                                    <c:url value="/delFile" var="delurl">
+                                                        <c:param name="fileList" value="${userList.getDirection()}${userList.getCourseID()}${userList.getTeacherID()}${userList.getfName()}"></c:param>
+                                                        <c:param name="courseName" value="${userList.getCourseID()}"></c:param>
+                                                        <c:param name="fileIDs" value="${userList.getId()}"></c:param>
+                                                    </c:url>
+                                                    <br/>
+                                                </td>
+                                                <td>
+                                                    <a class="button border-main" href="${downurl}"><span class="icon-edit"></span>下载 </a>
+                                                    <a class="button border-red" href="${delurl}" onclick="return del()"><span class="icon-trash-o"></span> 删除</a>
+                                                </td>
+                                            </tr>
+                                        </c:forEach>--%>
                                         <tr>
                                             <td class="center">
                                                 <label class="position-relative">
@@ -179,13 +160,14 @@
                                             <td>普通员工</td>
                                             <td>111111</td>
                                             <td>
-                                                <button class="btn btn-xs btn-info">
+                                                <%--弹窗按钮--%>
+                                                <a href="#editUser" role="button" class="btn btn-xs btn-info" data-toggle="modal">
                                                     <i class="ace-icon fa fa-pencil bigger-120"></i>
-                                                </button>
+                                                </a>
 
-                                                <button class="btn btn-xs btn-danger">
+                                                <a href="" role="button" class="btn btn-xs btn-danger" data-toggle="modal">
                                                     <i class="ace-icon fa fa-trash-o bigger-120"></i>
-                                                </button>
+                                                </a>
                                             </td>
                                         </tr>
                                         </tbody>
@@ -226,7 +208,7 @@
                             </div>
                         </div>
 
-                        <div id="modal-table" class="modal fade" tabindex="-1">
+                        <div id="addUser" class="modal fade" tabindex="-1">
                             <div class="modal-dialog">
                                 <div class="modal-content">
                                     <div class="modal-header no-padding">
@@ -243,29 +225,28 @@
                                         <form class="form-horizontal" role="form">
                                             <!-- #section:elements.form -->
                                             <div class="form-group" style="padding-top: 10px;padding-left: 120px;">
-                                                <label class="col-sm-3 control-label no-padding-right" for="form-field-1"> 编号：</label>
+                                                <label class="col-sm-3 control-label no-padding-right"> 编号：</label>
 
                                                 <div class="col-sm-9">
-                                                    <input type="text" id="form-field-1" placeholder="请输入用户编号" class="col-xs-10 col-sm-5" />
+                                                    <input type="text" name="pid" placeholder="请输入用户编号" class="col-xs-10 col-sm-5" required=""/>
                                                 </div>
                                             </div>
 
                                             <div class="form-group" style="padding-left: 120px;">
-                                                <label class="col-sm-3 control-label no-padding-right" for="form-field-1-1">姓名： </label>
+                                                <label class="col-sm-3 control-label no-padding-right" >姓名： </label>
 
                                                 <div class="col-sm-9">
-                                                    <input type="text" id="form-field-1-1" placeholder="输入用户姓名" class=" col-xs-10 col-sm-5" />
+                                                    <input type="text" name="pname" placeholder="输入用户姓名" class=" col-xs-10 col-sm-5" required=""/>
                                                 </div>
                                             </div>
 
-                                            <!-- /section:elements.form -->
                                             <div class="space-4"></div>
 
                                             <div class="form-group" style="padding-left: 120px;">
-                                                <label class="col-sm-3 control-label no-padding-right" for="form-field-2">密码： </label>
+                                                <label class="col-sm-3 control-label no-padding-right" >密码： </label>
 
                                                 <div class="col-sm-9">
-                                                    <input type="text" id="form-field-2" placeholder="输入用户密码" class="col-xs-10 col-sm-5" />
+                                                    <input type="text" name="pwd" placeholder="输入用户密码" class="col-xs-10 col-sm-5" required=""/>
                                                 </div>
                                             </div>
 
@@ -276,12 +257,14 @@
 
                                                 <div class="radio" >
                                                     <label>
-                                                        <input name="form-field-radio" type="radio" class="ace" />
+                                                        <input name="sex" type="radio" class="ace" />
                                                         <span class="lbl"> 男</span>
                                                     </label>
                                                     &nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp;
-                                                    <input name="form-field-radio" type="radio" class="ace" />
+                                                    <label>
+                                                    <input name="sex" type="radio" class="ace" />
                                                     <span class="lbl"> 女</span>
+                                                    </label>
                                                 </div>
                                             </div>
 
@@ -293,12 +276,25 @@
                                                 <div class="col-sm-9">
                                                     <!-- #section:plugins/bootstrap.typeahead-js -->
                                                     <div class="pos-rel">
-                                                        <select class="form-control" style="width: 135px;" id="">
-                                                            <option value="">请选择所属班组</option>
-                                                            <option value="AL">未提交</option>
-                                                            <option value="AK">已提交</option>
-                                                            <option value="AZ">待审核</option>
-                                                            <option value="AR">审核通过</option>
+                                                        <select class="form-control" style="width: 135px;" id="team">
+                                                            <option value="变频一班">请选择所属班组</option>
+                                                            <option value="变频一班">变频一班</option>
+                                                            <option value="变频二班">变频二班</option>
+                                                            <option value="变频三班">变频三班</option>
+                                                            <option value="变频五班">变频五班</option>
+                                                            <option value="变频六班">变频六班</option>
+                                                            <option value="变频八班">变频八班</option>
+                                                            <option value="主板一班">主板一班</option>
+                                                            <option value="主板二班">主板二班</option>
+                                                            <option value="主板三班">主板三班</option>
+                                                            <option value="主板五班">主板五班</option>
+                                                            <option value="主板六班">主板六班</option>
+                                                            <option value="主板八班">主板八班</option>
+                                                            <option value="显示器一班">显示器一班</option>
+                                                            <option value="显示器二班">显示器二班</option>
+                                                            <option value="显示器三班">显示器三班</option>
+                                                            <option value="显示器五班">显示器五班</option>
+                                                            <option value="AR"></option>
                                                         </select>
                                                     </div>
                                                 </div>
@@ -310,11 +306,11 @@
                                                 <div class="col-sm-9">
                                                     <!-- #section:plugins/bootstrap.typeahead-js -->
                                                     <div class="pos-rel">
-                                                        <select class="form-control" style="width: 135px;" id="">
-                                                            <option value="">请选择用户角色</option>
-                                                            <option value="AL">普通员工</option>
-                                                            <option value="AK">仓库管理员</option>
-                                                            <option value="AZ">超级管理员</option>
+                                                        <select class="form-control" style="width: 135px;" name="roleid">
+                                                            <option value="3">请选择用户角色</option>
+                                                            <option value="3">普通员工</option>
+                                                            <option value="2">仓库管理员</option>
+                                                            <option value="1">超级管理员</option>
                                                         </select>
                                                     </div>
                                                 </div>
@@ -367,7 +363,142 @@
                                     </div>
                                 </div><!-- /.modal-content -->
                             </div><!-- /.modal-dialog -->
-                        </div><!-- PAGE CONTENT ENDS -->
+                        </div>
+                        <div id="editUser" class="modal fade" tabindex="-1">
+                            <div class="modal-dialog">
+                                <div class="modal-content">
+                                    <div class="modal-header no-padding">
+                                        <div class="table-header">
+                                            <button type="button" class="close" data-dismiss="modal"
+                                                    aria-hidden="true">
+                                                <span class="white">&times;</span>
+                                            </button>
+                                            修改用户信息
+                                        </div>
+                                    </div>
+
+                                    <div class="modal-body">
+                                        <form class="form-horizontal" role="form">
+                                            <!-- #section:elements.form -->
+                                            <div class="form-group" style="padding-top: 10px;padding-left: 120px;">
+                                                <label class="col-sm-3 control-label no-padding-right"> 编号：</label>
+
+                                                <div class="col-sm-9">
+                                                    <input type="text" name="pid" placeholder="请输入用户编号" class="col-xs-10 col-sm-5" required=""/>
+                                                </div>
+                                            </div>
+
+                                            <div class="form-group" style="padding-left: 120px;">
+                                                <label class="col-sm-3 control-label no-padding-right">姓名： </label>
+
+                                                <div class="col-sm-9">
+                                                    <input type="text" name="pname" placeholder="输入用户姓名" class=" col-xs-10 col-sm-5" required=""/>
+                                                </div>
+                                            </div>
+
+                                            <!-- /section:elements.form -->
+                                            <div class="space-4"></div>
+
+                                            <div class="form-group" style="padding-left: 120px;">
+                                                <label class="col-sm-3 control-label no-padding-right" >密码： </label>
+
+                                                <div class="col-sm-9">
+                                                    <input type="text" name="pwd" placeholder="输入用户密码" class="col-xs-10 col-sm-5" required=""/>
+                                                </div>
+                                            </div>
+
+                                            <div class="space-4"></div>
+
+                                            <div class="form-group" style="padding-left: 120px;">
+                                                <label class="col-sm-3 control-label no-padding-right">性别： </label>
+
+                                                <div class="radio" >
+                                                    <label>
+                                                        <input name="sex" type="radio" class="ace" />
+                                                        <span class="lbl"> 男</span>
+                                                    </label>
+                                                    &nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp;
+                                                    <label>
+                                                        <input name="sex" type="radio" class="ace" />
+                                                        <span class="lbl"> 女</span>
+                                                    </label>
+                                                </div>
+                                            </div>
+
+                                            <div class="space-4"></div>
+
+                                            <div class="form-group" style="padding-left: 120px;">
+                                                <label class="col-sm-3 control-label no-padding-right">班组：</label>
+
+                                                <div class="col-sm-9">
+                                                    <!-- #section:plugins/bootstrap.typeahead-js -->
+                                                    <div class="pos-rel">
+                                                        <select class="form-control" style="width: 135px;" name="team">
+                                                            <option value="变频一班">请选择所属班组</option>
+                                                            <option value="变频一班">变频一班</option>
+                                                            <option value="变频二班">变频二班</option>
+                                                            <option value="变频三班">变频三班</option>
+                                                            <option value="变频五班">变频五班</option>
+                                                            <option value="变频六班">变频六班</option>
+                                                            <option value="变频八班">变频八班</option>
+                                                            <option value="主板一班">主板一班</option>
+                                                            <option value="主板二班">主板二班</option>
+                                                            <option value="主板三班">主板三班</option>
+                                                            <option value="主板五班">主板五班</option>
+                                                            <option value="主板六班">主板六班</option>
+                                                            <option value="主板八班">主板八班</option>
+                                                            <option value="显示器一班">显示器一班</option>
+                                                            <option value="显示器二班">显示器二班</option>
+                                                            <option value="显示器三班">显示器三班</option>
+                                                            <option value="显示器五班">显示器五班</option>
+                                                        </select>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <div class="form-group" style="padding-left: 120px;">
+                                                <label class="col-sm-3 control-label no-padding-right">角色：</label>
+
+                                                <div class="col-sm-9">
+                                                    <!-- #section:plugins/bootstrap.typeahead-js -->
+                                                    <div class="pos-rel">
+                                                        <select class="form-control" style="width: 135px;" name="roleid">
+                                                            <option value="3">请选择用户角色</option>
+                                                            <option value="3">普通员工</option>
+                                                            <option value="2">仓库管理员</option>
+                                                            <option value="1">超级管理员</option>
+                                                        </select>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <div class="clearfix form-actions">
+                                                <div class="col-md-offset-3 col-md-9" style="margin-left: 100px;">
+                                                    <button class="btn btn-info" type="button">
+                                                        <i class="ace-icon fa fa-check bigger-110"></i>
+                                                        提交
+                                                    </button>
+
+                                                    &nbsp; &nbsp; &nbsp;
+                                                    <button class="btn" type="reset">
+                                                        <i class="ace-icon fa fa-undo bigger-110"></i>
+                                                        重置
+                                                    </button>
+
+                                                    &nbsp; &nbsp; &nbsp;
+                                                    <button class="btn btn-danger bigger-110"
+                                                            data-dismiss="modal">
+                                                        <i class="ace-icon fa fa-times"></i>
+                                                        关闭
+                                                    </button>
+                                                </div>
+                                            </div>
+                                        </form>
+                                    </div>
+                                </div><!-- /.modal-content -->
+                            </div><!-- /.modal-dialog -->
+                        </div>
+                        <!-- PAGE CONTENT ENDS -->
                     </div><!-- /.col -->
                 </div><!-- /.row -->
             </div><!-- /.page-content-area -->
@@ -401,5 +532,42 @@
 <script src="/js/ace-elements.min.js"></script>
 <script src="/js/ace.min.js"></script>
 <script src="/js/bootstrap-fileupload.js"></script>
+<script type="text/javascript">
+    jQuery(function($) {
+
+        $(".tbl-search").click(function(){
+            $(".table-responsive").slideDown("fast");
+        })
+
+        var oTable1 =
+            $('#sample-table-2')
+                .dataTable( {
+                    bAutoWidth: false,
+                    bInfo:flase,
+                    "aoColumns": [
+                        { "bSortable": false },
+                        null,
+                        null,
+                        null,
+                        null,
+                        null,
+                        { "bSortable": false },
+                        null,
+                        { "bSortable": false }
+                    ],
+                    "aaSorting": [],
+                } );
+
+        $(document).on('click', 'th input:checkbox' , function(){
+            var that = this;
+            $(this).closest('table').find('tr > td:first-child input:checkbox')
+                .each(function(){
+                    this.checked = that.checked;
+                    $(this).closest('tr').toggleClass('selected');
+                });
+        });
+    })
+
+</script>
 </body>
 </html>

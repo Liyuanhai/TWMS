@@ -38,6 +38,12 @@ public class IndexController {
         }
     }
     //跳转登录页面
+    @RequestMapping("/index")
+    public  String index(){
+        return "index";
+    }
+
+    //跳转登录页面
     @RequestMapping("/login")
     public  String login(){
         return "login";
@@ -59,5 +65,65 @@ public class IndexController {
     @RequestMapping("/warehouse-manage")
     public  String warehouseManage(){
         return "warehouse-manage";
+    }
+
+    //跳转到工装评审界面
+    @RequestMapping("/tool-review")
+    public  String toolReview(){
+        return "tool-review";
+    }
+
+    //跳转到物料信息界面
+    @RequestMapping("/material-info")
+    public  String materialInfo(){
+        return "material-info";
+    }
+
+    //跳转到工装维修信息界面
+    @RequestMapping("/tool-repair")
+    public  String toolRepair(){
+        return "tool-repair";
+    }
+
+    //跳转到版本升级界面
+    @RequestMapping("/version-update")
+    public  String versionUpdate(){
+        return "version-update";
+    }
+
+    //跳转到工装信息管理界面
+    @RequestMapping("/tool-manage")
+    public  String toolManage(){
+        return "tool-manage";
+    }
+
+    //跳转到出入库台帐管理界面
+    @RequestMapping("/IO-account")
+    public  String IOAccount(){
+        return "IO-account";
+    }
+
+    //跳转到评审表台帐管理界面
+    @RequestMapping("/review-account")
+    public  String reviewAccount(){
+        return "review-account";
+    }
+
+    //跳转到维修记录台帐管理界面
+    @RequestMapping("/repair-account")
+    public  String repairAccount(){
+        return "repair-account";
+    }
+
+    //跳转到版本升级台帐管理界面
+    @RequestMapping("/update-account")
+    public  String updateAccount(){
+        return "update-account";
+    }
+
+    //跳转到物料信息台帐管理界面
+    @RequestMapping("/material-account")
+    public  String materialAccount(){
+        return "material-account";
     }
 }

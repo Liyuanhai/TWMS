@@ -50,7 +50,7 @@
 
                 <ul class="submenu">
                     <li class="">
-                        <a href="form-elements.html">
+                        <a href="/twms/tool-review">
                             <i class="menu-icon fa fa-caret-right"></i>
                             工装评审
                         </a>
@@ -59,7 +59,7 @@
                     </li>
 
                     <li class="">
-                        <a href="form-wizard.html">
+                        <a href="/twms/tool-repair">
                             <i class="menu-icon fa fa-caret-right"></i>
                             工装维修
                         </a>
@@ -68,7 +68,7 @@
                     </li>
 
                     <li class="">
-                        <a href="wysiwyg.html">
+                        <a href="/twms/version-update">
                             <i class="menu-icon fa fa-caret-right"></i>
                             版本升级
                         </a>
@@ -77,7 +77,7 @@
                     </li>
 
                     <li class="">
-                        <a href="dropzone.html">
+                        <a href="/twms/material-info">
                             <i class="menu-icon fa fa-caret-right"></i>
                             物料信息
                         </a>
@@ -86,7 +86,7 @@
                     </li>
 
                     <li class="">
-                        <a href="dropzone.html">
+                        <a href="/twms/tool-manage">
                             <i class="menu-icon fa fa-caret-right"></i>
                             工装信息管理
                         </a>
@@ -108,7 +108,7 @@
 
                 <ul class="submenu">
                     <li class="">
-                        <a href="form-elements.html">
+                        <a href="/twms/IO-account">
                             <i class="menu-icon fa fa-caret-right"></i>
                             出入库台帐
                         </a>
@@ -117,7 +117,7 @@
                     </li>
 
                     <li class="">
-                        <a href="dropzone.html">
+                        <a href="/twms/review-account">
                             <i class="menu-icon fa fa-caret-right"></i>
                             评审表台帐
                         </a>
@@ -126,7 +126,7 @@
                     </li>
 
                     <li class="">
-                        <a href="form-wizard.html">
+                        <a href="/twms/repair-account">
                             <i class="menu-icon fa fa-caret-right"></i>
                             维修记录台帐
                         </a>
@@ -135,7 +135,7 @@
                     </li>
 
                     <li class="">
-                        <a href="wysiwyg.html">
+                        <a href="/twms/update-account">
                             <i class="menu-icon fa fa-caret-right"></i>
                             版本升级台帐
                         </a>
@@ -144,7 +144,7 @@
                     </li>
 
                     <li class="">
-                        <a href="dropzone.html">
+                        <a href="/twms/material-account">
                             <i class="menu-icon fa fa-caret-right"></i>
                             物料信息台帐
                         </a>

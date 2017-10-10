@@ -16,8 +16,7 @@ public class UserServiceImpl implements IUserService {
 
     @Override
     public User selectIsValidUser(User user) {
-//        User result = userMapper.selectIsValidUser(user);
-        User result = userMapper.selectByPrimaryKey("1");
-        return null;
+        User result = userMapper.selectIsValidUser(user);
+        return result;
     }
 }

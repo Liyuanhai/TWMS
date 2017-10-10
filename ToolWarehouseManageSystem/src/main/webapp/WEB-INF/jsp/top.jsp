@@ -154,9 +154,9 @@
 
                     <ul class="user-menu dropdown-menu-right dropdown-menu dropdown-yellow dropdown-caret dropdown-close">
                         <li>
-                            <a href="profile.html">
+                            <a href="#chengePassword" role="button" data-toggle="modal">
                                 <i class="ace-icon fa fa-user"></i>
-                                个人信息设置
+                                修改密码
                             </a>
                         </li>
 
@@ -165,7 +165,7 @@
                         <li>
                             <a href="/twms/loginOut">
                                 <i class="ace-icon fa fa-power-off"></i>
-                                登出
+                                退出
                             </a>
                         </li>
                     </ul>
@@ -175,6 +175,82 @@
             </ul>
         </div>
 
+        <div id="chengePassword" class="modal fade" tabindex="-1">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header no-padding">
+                        <div class="table-header">
+                            <button type="button" class="close" data-dismiss="modal"
+                                    aria-hidden="true">
+                                <span class="white">&times;</span>
+                            </button>
+                            修改密码
+                        </div>
+                    </div>
+
+                    <div class="modal-body">
+                        <form class="form-horizontal" role="form">
+                            <!-- #section:elements.form -->
+                            <div class="form-group"
+                                 style="padding-top: 10px;padding-left: 120px;">
+                                <label class="col-sm-3 control-label no-padding-right"
+                                       for="form-field-1"> 原密码：</label>
+
+                                <div class="col-sm-9">
+                                    <input type="text" id="form-field-1"
+                                           placeholder="请输入用户密码"
+                                           class="col-xs-10 col-sm-5"/>
+                                </div>
+                            </div>
+
+                            <div class="form-group" style="padding-left: 120px;">
+                                <label class="col-sm-3 control-label no-padding-right"
+                                       for="form-field-1-1">新密码： </label>
+
+                                <div class="col-sm-9">
+                                    <input type="text" id="form-field-1-1"
+                                           placeholder="输入新密码"
+                                           class=" col-xs-10 col-sm-5"/>
+                                </div>
+                            </div>
+
+                            <!-- /section:elements.form -->
+                            <div class="space-4"></div>
+
+                            <div class="form-group" style="padding-left: 120px;">
+                                <label class="col-sm-3 control-label no-padding-right"
+                                       for="form-field-2">新密码： </label>
+
+                                <div class="col-sm-9">
+                                    <input type="text" id="form-field-2"
+                                           placeholder="请再次确认新密码"
+                                           class="col-xs-10 col-sm-5"/>
+                                </div>
+                            </div>
+
+                            <div class="space-4"></div>
+
+                            <div class="clearfix form-actions">
+                                <div class="col-md-offset-3 col-md-9"
+                                     style="margin-left: 150px;">
+                                    <button class="btn btn-info" type="button">
+                                        <i class="ace-icon fa fa-check bigger-110"></i>
+                                        确认
+                                    </button>
+
+                                    &nbsp; &nbsp; &nbsp;
+                                    <button class="btn btn-danger bigger-110"
+                                            data-dismiss="modal">
+                                        <i class="ace-icon fa fa-times"></i>
+                                        关闭
+                                    </button>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div><!-- /.modal-content -->
+            </div><!-- /.modal-dialog -->
+        </div>
         <!-- /section:basics/navbar.dropdown -->
     </div><!-- /.navbar-container -->
 </div>
