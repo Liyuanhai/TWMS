@@ -8,24 +8,20 @@
     <result column="versionNum" property="versionnum" jdbcType="VARCHAR" />
     <result column="team" property="team" jdbcType="VARCHAR" />
     <result column="pName" property="pname" jdbcType="VARCHAR" />
-    <result column="borrowTime" property="borrowtime" jdbcType="TIMESTAMP" />
+    <result column="time" property="time" jdbcType="TIMESTAMP" />
     <result column="remarks1" property="remarks1" jdbcType="VARCHAR" />
     <result column="remarks2" property="remarks2" jdbcType="VARCHAR" />
     <result column="remarks3" property="remarks3" jdbcType="VARCHAR" />
-    <result column="remarks4" property="remarks4" jdbcType="VARCHAR" />
-    <result column="remarks5" property="remarks5" jdbcType="VARCHAR" />
   </resultMap>
   <insert id="insert" parameterType="com.gree.twms.pojo.Account" >
     insert into account (tID, tName, tModel, 
       versionNum, team, pName, 
-      borrowTime, remarks1, remarks2, 
-      remarks3, remarks4, remarks5
-      )
+      time, remarks1, remarks2, 
+      remarks3)
     values (#{tid,jdbcType=VARCHAR}, #{tname,jdbcType=VARCHAR}, #{tmodel,jdbcType=VARCHAR}, 
       #{versionnum,jdbcType=VARCHAR}, #{team,jdbcType=VARCHAR}, #{pname,jdbcType=VARCHAR}, 
-      #{borrowtime,jdbcType=TIMESTAMP}, #{remarks1,jdbcType=VARCHAR}, #{remarks2,jdbcType=VARCHAR}, 
-      #{remarks3,jdbcType=VARCHAR}, #{remarks4,jdbcType=VARCHAR}, #{remarks5,jdbcType=VARCHAR}
-      )
+      #{time,jdbcType=TIMESTAMP}, #{remarks1,jdbcType=VARCHAR}, #{remarks2,jdbcType=VARCHAR}, 
+      #{remarks3,jdbcType=VARCHAR})
   </insert>
   <insert id="insertSelective" parameterType="com.gree.twms.pojo.Account" >
     insert into account
@@ -48,8 +44,8 @@
       <if test="pname != null" >
         pName,
       </if>
-      <if test="borrowtime != null" >
-        borrowTime,
+      <if test="time != null" >
+        time,
       </if>
       <if test="remarks1 != null" >
         remarks1,
@@ -59,12 +55,6 @@
       </if>
       <if test="remarks3 != null" >
         remarks3,
-      </if>
-      <if test="remarks4 != null" >
-        remarks4,
-      </if>
-      <if test="remarks5 != null" >
-        remarks5,
       </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides="," >
@@ -86,8 +76,8 @@
       <if test="pname != null" >
         #{pname,jdbcType=VARCHAR},
       </if>
-      <if test="borrowtime != null" >
-        #{borrowtime,jdbcType=TIMESTAMP},
+      <if test="time != null" >
+        #{time,jdbcType=TIMESTAMP},
       </if>
       <if test="remarks1 != null" >
         #{remarks1,jdbcType=VARCHAR},
@@ -97,12 +87,6 @@
       </if>
       <if test="remarks3 != null" >
         #{remarks3,jdbcType=VARCHAR},
-      </if>
-      <if test="remarks4 != null" >
-        #{remarks4,jdbcType=VARCHAR},
-      </if>
-      <if test="remarks5 != null" >
-        #{remarks5,jdbcType=VARCHAR},
       </if>
     </trim>
   </insert>

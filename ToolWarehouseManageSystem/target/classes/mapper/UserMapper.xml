@@ -6,7 +6,6 @@
     <result column="pName" property="pname" jdbcType="VARCHAR" />
     <result column="sex" property="sex" jdbcType="VARCHAR" />
     <result column="team" property="team" jdbcType="VARCHAR" />
-    <result column="roleID" property="roleid" jdbcType="INTEGER" />
     <result column="pwd" property="pwd" jdbcType="VARCHAR" />
     <result column="remarks1" property="remarks1" jdbcType="VARCHAR" />
     <result column="remarks2" property="remarks2" jdbcType="VARCHAR" />
@@ -15,7 +14,7 @@
     <result column="remarks5" property="remarks5" jdbcType="VARCHAR" />
   </resultMap>
   <sql id="Base_Column_List" >
-    pID, pName, sex, team, roleID, pwd, remarks1, remarks2, remarks3, remarks4, remarks5
+    pID, pName, sex, team, pwd, remarks1, remarks2, remarks3, remarks4, remarks5
   </sql>
   <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
     select 
@@ -29,13 +28,13 @@
   </delete>
   <insert id="insert" parameterType="com.gree.twms.pojo.User" >
     insert into user (pID, pName, sex, 
-      team, roleID, pwd, 
-      remarks1, remarks2, remarks3, 
-      remarks4, remarks5)
+      team, pwd, remarks1, 
+      remarks2, remarks3, remarks4, 
+      remarks5)
     values (#{pid,jdbcType=VARCHAR}, #{pname,jdbcType=VARCHAR}, #{sex,jdbcType=VARCHAR}, 
-      #{team,jdbcType=VARCHAR}, #{roleid,jdbcType=INTEGER}, #{pwd,jdbcType=VARCHAR}, 
-      #{remarks1,jdbcType=VARCHAR}, #{remarks2,jdbcType=VARCHAR}, #{remarks3,jdbcType=VARCHAR}, 
-      #{remarks4,jdbcType=VARCHAR}, #{remarks5,jdbcType=VARCHAR})
+      #{team,jdbcType=VARCHAR}, #{pwd,jdbcType=VARCHAR}, #{remarks1,jdbcType=VARCHAR}, 
+      #{remarks2,jdbcType=VARCHAR}, #{remarks3,jdbcType=VARCHAR}, #{remarks4,jdbcType=VARCHAR}, 
+      #{remarks5,jdbcType=VARCHAR})
   </insert>
   <insert id="insertSelective" parameterType="com.gree.twms.pojo.User" >
     insert into user
@@ -51,9 +50,6 @@
       </if>
       <if test="team != null" >
         team,
-      </if>
-      <if test="roleid != null" >
-        roleID,
       </if>
       <if test="pwd != null" >
         pwd,
@@ -87,9 +83,6 @@
       <if test="team != null" >
         #{team,jdbcType=VARCHAR},
       </if>
-      <if test="roleid != null" >
-        #{roleid,jdbcType=INTEGER},
-      </if>
       <if test="pwd != null" >
         #{pwd,jdbcType=VARCHAR},
       </if>
@@ -122,9 +115,6 @@
       <if test="team != null" >
         team = #{team,jdbcType=VARCHAR},
       </if>
-      <if test="roleid != null" >
-        roleID = #{roleid,jdbcType=INTEGER},
-      </if>
       <if test="pwd != null" >
         pwd = #{pwd,jdbcType=VARCHAR},
       </if>
@@ -151,7 +141,6 @@
     set pName = #{pname,jdbcType=VARCHAR},
       sex = #{sex,jdbcType=VARCHAR},
       team = #{team,jdbcType=VARCHAR},
-      roleID = #{roleid,jdbcType=INTEGER},
       pwd = #{pwd,jdbcType=VARCHAR},
       remarks1 = #{remarks1,jdbcType=VARCHAR},
       remarks2 = #{remarks2,jdbcType=VARCHAR},
@@ -160,4 +149,10 @@
       remarks5 = #{remarks5,jdbcType=VARCHAR}
     where pID = #{pid,jdbcType=VARCHAR}
   </update>
+
+
+  <select id="selectIsValidUser" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select * from user
+  	where pID = #{pid,jdbcType=VARCHAR} AND pwd = #{pwd,jdbcType=VARCHAR}
+  </select>
 </mapper>

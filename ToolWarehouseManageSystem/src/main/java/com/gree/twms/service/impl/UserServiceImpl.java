@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 
+
 @Service("userService")
 public class UserServiceImpl implements IUserService {
 
@@ -15,9 +16,8 @@ public class UserServiceImpl implements IUserService {
     private UserMapper userMapper;
 
     @Override
-    public User selectIsValidUser(User user) {
-//        User result = userMapper.selectIsValidUser(user);
-        User result = userMapper.selectByPrimaryKey("1");
+    public User selectIsValidUser(String username, String password) {
+        userMapper.selectIsValidUser(username,password);
         return null;
     }
 }

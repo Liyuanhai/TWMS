@@ -1,0 +1,248 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.gree.twms.dao.StudentMapper" >
+  <resultMap id="BaseResultMap" type="com.gree.twms.pojo.Student" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="loginNo" property="loginno" jdbcType="INTEGER" />
+    <result column="stuName" property="stuname" jdbcType="VARCHAR" />
+    <result column="stuInitials" property="stuinitials" jdbcType="VARCHAR" />
+    <result column="stuSex" property="stusex" jdbcType="INTEGER" />
+    <result column="stuBirthday" property="stubirthday" jdbcType="DATE" />
+    <result column="stuAddress" property="stuaddress" jdbcType="VARCHAR" />
+    <result column="contactName" property="contactname" jdbcType="VARCHAR" />
+    <result column="contactPhone" property="contactphone" jdbcType="VARCHAR" />
+    <result column="stuPhone" property="stuphone" jdbcType="VARCHAR" />
+    <result column="stuQq" property="stuqq" jdbcType="VARCHAR" />
+    <result column="entranceTime" property="entrancetime" jdbcType="DATE" />
+    <result column="school" property="school" jdbcType="VARCHAR" />
+    <result column="cource_id" property="courceId" jdbcType="INTEGER" />
+    <result column="stuAvatar" property="stuavatar" jdbcType="VARCHAR" />
+    <result column="user_id" property="userId" jdbcType="INTEGER" />
+    <result column="state" property="state" jdbcType="INTEGER" />
+    <result column="remarks" property="remarks" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, loginNo, stuName, stuInitials, stuSex, stuBirthday, stuAddress, contactName, 
+    contactPhone, stuPhone, stuQq, entranceTime, school, cource_id, stuAvatar, user_id, 
+    state, remarks
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from student
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from student
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.gree.twms.pojo.Student" >
+    insert into student (id, loginNo, stuName, 
+      stuInitials, stuSex, stuBirthday, 
+      stuAddress, contactName, contactPhone, 
+      stuPhone, stuQq, entranceTime, 
+      school, cource_id, stuAvatar, 
+      user_id, state, remarks
+      )
+    values (#{id,jdbcType=INTEGER}, #{loginno,jdbcType=INTEGER}, #{stuname,jdbcType=VARCHAR}, 
+      #{stuinitials,jdbcType=VARCHAR}, #{stusex,jdbcType=INTEGER}, #{stubirthday,jdbcType=DATE}, 
+      #{stuaddress,jdbcType=VARCHAR}, #{contactname,jdbcType=VARCHAR}, #{contactphone,jdbcType=VARCHAR}, 
+      #{stuphone,jdbcType=VARCHAR}, #{stuqq,jdbcType=VARCHAR}, #{entrancetime,jdbcType=DATE}, 
+      #{school,jdbcType=VARCHAR}, #{courceId,jdbcType=INTEGER}, #{stuavatar,jdbcType=VARCHAR}, 
+      #{userId,jdbcType=INTEGER}, #{state,jdbcType=INTEGER}, #{remarks,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.gree.twms.pojo.Student" >
+    insert into student
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="loginno != null" >
+        loginNo,
+      </if>
+      <if test="stuname != null" >
+        stuName,
+      </if>
+      <if test="stuinitials != null" >
+        stuInitials,
+      </if>
+      <if test="stusex != null" >
+        stuSex,
+      </if>
+      <if test="stubirthday != null" >
+        stuBirthday,
+      </if>
+      <if test="stuaddress != null" >
+        stuAddress,
+      </if>
+      <if test="contactname != null" >
+        contactName,
+      </if>
+      <if test="contactphone != null" >
+        contactPhone,
+      </if>
+      <if test="stuphone != null" >
+        stuPhone,
+      </if>
+      <if test="stuqq != null" >
+        stuQq,
+      </if>
+      <if test="entrancetime != null" >
+        entranceTime,
+      </if>
+      <if test="school != null" >
+        school,
+      </if>
+      <if test="courceId != null" >
+        cource_id,
+      </if>
+      <if test="stuavatar != null" >
+        stuAvatar,
+      </if>
+      <if test="userId != null" >
+        user_id,
+      </if>
+      <if test="state != null" >
+        state,
+      </if>
+      <if test="remarks != null" >
+        remarks,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="loginno != null" >
+        #{loginno,jdbcType=INTEGER},
+      </if>
+      <if test="stuname != null" >
+        #{stuname,jdbcType=VARCHAR},
+      </if>
+      <if test="stuinitials != null" >
+        #{stuinitials,jdbcType=VARCHAR},
+      </if>
+      <if test="stusex != null" >
+        #{stusex,jdbcType=INTEGER},
+      </if>
+      <if test="stubirthday != null" >
+        #{stubirthday,jdbcType=DATE},
+      </if>
+      <if test="stuaddress != null" >
+        #{stuaddress,jdbcType=VARCHAR},
+      </if>
+      <if test="contactname != null" >
+        #{contactname,jdbcType=VARCHAR},
+      </if>
+      <if test="contactphone != null" >
+        #{contactphone,jdbcType=VARCHAR},
+      </if>
+      <if test="stuphone != null" >
+        #{stuphone,jdbcType=VARCHAR},
+      </if>
+      <if test="stuqq != null" >
+        #{stuqq,jdbcType=VARCHAR},
+      </if>
+      <if test="entrancetime != null" >
+        #{entrancetime,jdbcType=DATE},
+      </if>
+      <if test="school != null" >
+        #{school,jdbcType=VARCHAR},
+      </if>
+      <if test="courceId != null" >
+        #{courceId,jdbcType=INTEGER},
+      </if>
+      <if test="stuavatar != null" >
+        #{stuavatar,jdbcType=VARCHAR},
+      </if>
+      <if test="userId != null" >
+        #{userId,jdbcType=INTEGER},
+      </if>
+      <if test="state != null" >
+        #{state,jdbcType=INTEGER},
+      </if>
+      <if test="remarks != null" >
+        #{remarks,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.gree.twms.pojo.Student" >
+    update student
+    <set >
+      <if test="loginno != null" >
+        loginNo = #{loginno,jdbcType=INTEGER},
+      </if>
+      <if test="stuname != null" >
+        stuName = #{stuname,jdbcType=VARCHAR},
+      </if>
+      <if test="stuinitials != null" >
+        stuInitials = #{stuinitials,jdbcType=VARCHAR},
+      </if>
+      <if test="stusex != null" >
+        stuSex = #{stusex,jdbcType=INTEGER},
+      </if>
+      <if test="stubirthday != null" >
+        stuBirthday = #{stubirthday,jdbcType=DATE},
+      </if>
+      <if test="stuaddress != null" >
+        stuAddress = #{stuaddress,jdbcType=VARCHAR},
+      </if>
+      <if test="contactname != null" >
+        contactName = #{contactname,jdbcType=VARCHAR},
+      </if>
+      <if test="contactphone != null" >
+        contactPhone = #{contactphone,jdbcType=VARCHAR},
+      </if>
+      <if test="stuphone != null" >
+        stuPhone = #{stuphone,jdbcType=VARCHAR},
+      </if>
+      <if test="stuqq != null" >
+        stuQq = #{stuqq,jdbcType=VARCHAR},
+      </if>
+      <if test="entrancetime != null" >
+        entranceTime = #{entrancetime,jdbcType=DATE},
+      </if>
+      <if test="school != null" >
+        school = #{school,jdbcType=VARCHAR},
+      </if>
+      <if test="courceId != null" >
+        cource_id = #{courceId,jdbcType=INTEGER},
+      </if>
+      <if test="stuavatar != null" >
+        stuAvatar = #{stuavatar,jdbcType=VARCHAR},
+      </if>
+      <if test="userId != null" >
+        user_id = #{userId,jdbcType=INTEGER},
+      </if>
+      <if test="state != null" >
+        state = #{state,jdbcType=INTEGER},
+      </if>
+      <if test="remarks != null" >
+        remarks = #{remarks,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.gree.twms.pojo.Student" >
+    update student
+    set loginNo = #{loginno,jdbcType=INTEGER},
+      stuName = #{stuname,jdbcType=VARCHAR},
+      stuInitials = #{stuinitials,jdbcType=VARCHAR},
+      stuSex = #{stusex,jdbcType=INTEGER},
+      stuBirthday = #{stubirthday,jdbcType=DATE},
+      stuAddress = #{stuaddress,jdbcType=VARCHAR},
+      contactName = #{contactname,jdbcType=VARCHAR},
+      contactPhone = #{contactphone,jdbcType=VARCHAR},
+      stuPhone = #{stuphone,jdbcType=VARCHAR},
+      stuQq = #{stuqq,jdbcType=VARCHAR},
+      entranceTime = #{entrancetime,jdbcType=DATE},
+      school = #{school,jdbcType=VARCHAR},
+      cource_id = #{courceId,jdbcType=INTEGER},
+      stuAvatar = #{stuavatar,jdbcType=VARCHAR},
+      user_id = #{userId,jdbcType=INTEGER},
+      state = #{state,jdbcType=INTEGER},
+      remarks = #{remarks,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>

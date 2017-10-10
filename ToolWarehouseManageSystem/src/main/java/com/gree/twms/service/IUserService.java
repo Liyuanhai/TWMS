@@ -6,6 +6,6 @@ import com.gree.twms.pojo.User;
 
 public interface IUserService {
 
-    User selectIsValidUser(User user);
+    User selectIsValidUser(String username,String password);
 
 }

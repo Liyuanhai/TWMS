@@ -9,8 +9,6 @@ public class User {
 
     private String team;
 
-    private Integer roleid;
-
     private String pwd;
 
     private String remarks1;
@@ -53,14 +51,6 @@ public class User {
 
     public void setTeam(String team) {
         this.team = team == null ? null : team.trim();
-    }
-
-    public Integer getRoleid() {
-        return roleid;
-    }
-
-    public void setRoleid(Integer roleid) {
-        this.roleid = roleid;
     }
 
     public String getPwd() {
