@@ -4,6 +4,8 @@ import com.gree.twms.pojo.User;
 
 import org.springframework.stereotype.Component;
 
+import java.util.List;
+
 @Component("userMapper")
 public interface UserMapper {
     int deleteByPrimaryKey(String pid);
@@ -19,4 +21,6 @@ public interface UserMapper {
     int updateByPrimaryKey(User record);
 
     User selectIsValidUser(User user);
+
+    List<User> selectAllUser();
 }

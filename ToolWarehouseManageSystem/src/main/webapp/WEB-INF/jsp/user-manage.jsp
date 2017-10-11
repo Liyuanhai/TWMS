@@ -114,9 +114,9 @@
                                         </thead>
 
                                         <tbody class="center">
-                                        <%--foreach循环显示用户列表
-                                        <c:forEach var="user" items="${userList}">
-                                            <input name="fileIDs" value="${userList.getId()}" type="hidden">
+                                        <%--foreach循环显示用户列表--%>
+                                        <c:forEach var="users" items="${users}">
+                                            <%--<input name="fileIDs" value="${userList.getId()}" type="hidden">--%>
 
                                             <tr>
                                                 <td class="center">
@@ -125,51 +125,24 @@
                                                         <span class="lbl"></span>
                                                     </label>
                                                 </td>
-                                                <td style="text-align:left; padding-left:50px;"><input type="checkbox" name="fileList" value="" />   </td>
+                                                <td>${users.getPid()}</td>
+                                                <td>${users.getPname()}</td>
+                                                <td>${users.getSex()}</td>
+                                                <td>${users.getTeam()}</td>
+                                                <td>${users.getRoleid()}</td>
+                                                <td>${users.getPwd()}</td>
                                                 <td>
-                                                    <c:url value="/downloadZip" var="downurl">
-                                                        <c:param name="fileList" value="asdfa"></c:param>
-                                                        <c:param name="courseName" value="asdf"></c:param>
-                                                    </c:url>
-                                                        ${userList.getfName()}
-                                                    <c:url value="/delFile" var="delurl">
-                                                        <c:param name="fileList" value="${userList.getDirection()}${userList.getCourseID()}${userList.getTeacherID()}${userList.getfName()}"></c:param>
-                                                        <c:param name="courseName" value="${userList.getCourseID()}"></c:param>
-                                                        <c:param name="fileIDs" value="${userList.getId()}"></c:param>
-                                                    </c:url>
-                                                    <br/>
-                                                </td>
-                                                <td>
-                                                    <a class="button border-main" href="${downurl}"><span class="icon-edit"></span>下载 </a>
-                                                    <a class="button border-red" href="${delurl}" onclick="return del()"><span class="icon-trash-o"></span> 删除</a>
+                                                    <%--弹窗按钮--%>
+                                                    <a href="#editUser" role="button" class="btn btn-xs btn-info" data-toggle="modal">
+                                                        <i class="ace-icon fa fa-pencil bigger-120"></i>
+                                                    </a>
+
+                                                    <a href="" role="button" class="btn btn-xs btn-danger" data-toggle="modal">
+                                                        <i class="ace-icon fa fa-trash-o bigger-120"></i>
+                                                    </a>
                                                 </td>
                                             </tr>
-                                        </c:forEach>--%>
-                                        <tr>
-                                            <td class="center">
-                                                <label class="position-relative">
-                                                    <input type="checkbox" class="ace"/>
-                                                    <span class="lbl"></span>
-                                                </label>
-                                            </td>
-
-                                            <td>037667</td>
-                                            <td>李元海</td>
-                                            <td>男</td>
-                                            <td>变频一班</td>
-                                            <td>普通员工</td>
-                                            <td>111111</td>
-                                            <td>
-                                                <%--弹窗按钮--%>
-                                                <a href="#editUser" role="button" class="btn btn-xs btn-info" data-toggle="modal">
-                                                    <i class="ace-icon fa fa-pencil bigger-120"></i>
-                                                </a>
-
-                                                <a href="" role="button" class="btn btn-xs btn-danger" data-toggle="modal">
-                                                    <i class="ace-icon fa fa-trash-o bigger-120"></i>
-                                                </a>
-                                            </td>
-                                        </tr>
+                                        </c:forEach>
                                         </tbody>
                                     </table>
 
@@ -222,7 +195,7 @@
                                     </div>
 
                                     <div class="modal-body">
-                                        <form class="form-horizontal" role="form">
+                                        <form id="insertUser" class="form-horizontal" role="form" method="post" enctype="multipart/form-data" action="/twms/insertUser">
                                             <!-- #section:elements.form -->
                                             <div class="form-group" style="padding-top: 10px;padding-left: 120px;">
                                                 <label class="col-sm-3 control-label no-padding-right"> 编号：</label>
@@ -257,12 +230,12 @@
 
                                                 <div class="radio" >
                                                     <label>
-                                                        <input name="sex" type="radio" class="ace" />
+                                                        <input name="sex" type="radio" class="ace" value="男" />
                                                         <span class="lbl"> 男</span>
                                                     </label>
                                                     &nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp;
                                                     <label>
-                                                    <input name="sex" type="radio" class="ace" />
+                                                    <input name="sex" type="radio" class="ace" value="女" />
                                                     <span class="lbl"> 女</span>
                                                     </label>
                                                 </div>
@@ -276,7 +249,7 @@
                                                 <div class="col-sm-9">
                                                     <!-- #section:plugins/bootstrap.typeahead-js -->
                                                     <div class="pos-rel">
-                                                        <select class="form-control" style="width: 135px;" id="team">
+                                                        <select class="form-control" style="width: 135px;" name="team">
                                                             <option value="变频一班">请选择所属班组</option>
                                                             <option value="变频一班">变频一班</option>
                                                             <option value="变频二班">变频二班</option>
@@ -294,7 +267,6 @@
                                                             <option value="显示器二班">显示器二班</option>
                                                             <option value="显示器三班">显示器三班</option>
                                                             <option value="显示器五班">显示器五班</option>
-                                                            <option value="AR"></option>
                                                         </select>
                                                     </div>
                                                 </div>
@@ -306,8 +278,8 @@
                                                 <div class="col-sm-9">
                                                     <!-- #section:plugins/bootstrap.typeahead-js -->
                                                     <div class="pos-rel">
-                                                        <select class="form-control" style="width: 135px;" name="roleid">
-                                                            <option value="3">请选择用户角色</option>
+                                                        <select class="form-control" style="width: 135px;" name="roleid" required="">
+                                                            <option value="">请选择用户角色</option>
                                                             <option value="3">普通员工</option>
                                                             <option value="2">仓库管理员</option>
                                                             <option value="1">超级管理员</option>
@@ -332,7 +304,7 @@
                                                                class="close fileupload-exists"
                                                                data-dismiss="fileupload"
                                                                style="float: none">x</a>
-                                                            <input type="submit" class="btn btn-sm btn-primary" value="确认上传">
+                                                            <input type="button" class="btn btn-sm btn-primary" onclick="importUsers()" value="确认上传">
                                                         </div>
                                                     </div>
                                                 </div>
@@ -568,6 +540,13 @@
         });
     })
 
+</script>
+<script>
+    //提交到批量导入进行处理
+    function importUsers(){
+        document.getElementById('insertUser').action = "/twms/importUsers";
+        $("#insertUser").submit();
+    }
 </script>
 </body>
 </html>
