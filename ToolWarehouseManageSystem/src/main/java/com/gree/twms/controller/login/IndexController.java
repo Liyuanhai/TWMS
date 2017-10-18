@@ -1,6 +1,7 @@
 package com.gree.twms.controller.login;
 
 
+import com.github.pagehelper.PageInfo;
 import com.gree.twms.pojo.User;
 import com.gree.twms.service.IUserService;
 
@@ -32,15 +33,18 @@ public class IndexController {
                 return "login";
             }else{
                 request.getSession().setAttribute("userInfo",result);
-                User user1= (User) request.getSession().getAttribute("userInfo");
                 return "index";
             }
         }
     }
     //跳转登录页面
     @RequestMapping("/index")
-    public  String index(){
-        return "index";
+    public  String index(HttpServletRequest request){
+        if(isLogged(request)) {
+            return "index";
+        }else {
+            return "login";
+        }
     }
 
     //跳转登录页面
@@ -51,20 +55,36 @@ public class IndexController {
 
     //退出登录
     @RequestMapping("/loginOut")
-    public  String loginOut(){
+    public  String loginOut(HttpServletRequest request){
+        request.getSession().removeAttribute("userInfo");
         return "login";
     }
 
     //跳转到用户管理界面
     @RequestMapping("/user-manage")
-    public  String userManage(){
-        return "user-manage";
+    public  String userManage(HttpServletRequest request){
+        String msg = "";
+        if(isLogged(request)) {
+            PageInfo<User> pageInfo=userService.conditionQueryPage(null,null,null );
+            request.setAttribute("pageInfo",pageInfo);
+            request.setAttribute("users",pageInfo.getList());
+            request.setAttribute("conditions","");
+            request.setAttribute("keywords","");
+            request.setAttribute("msg",msg);
+            return "user-manage";
+        }else {
+            return "login";
+        }
     }
 
     //跳转到仓库管理界面
     @RequestMapping("/warehouse-manage")
-    public  String warehouseManage(){
-        return "warehouse-manage";
+    public  String warehouseManage(HttpServletRequest request){
+        if(isLogged(request)) {
+            return "warehouse-manage";
+        }else {
+            return "login";
+        }
     }
 
     //跳转到工装评审界面
@@ -125,5 +145,14 @@ public class IndexController {
     @RequestMapping("/material-account")
     public  String materialAccount(){
         return "material-account";
+    }
+
+    public boolean isLogged(HttpServletRequest request){
+        User user = (User)request.getSession().getAttribute("userInfo");
+        if(user == null){
+            return false;
+        }else{
+            return true;
+        }
     }
 }

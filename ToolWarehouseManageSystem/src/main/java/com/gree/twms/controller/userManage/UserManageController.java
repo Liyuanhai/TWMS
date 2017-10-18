@@ -1,5 +1,6 @@
 package com.gree.twms.controller.userManage;
 
+import com.github.pagehelper.PageInfo;
 import com.gree.twms.pojo.User;
 import com.gree.twms.service.IUserService;
 
@@ -11,7 +12,6 @@ import org.springframework.web.multipart.MultipartFile;
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
@@ -38,9 +38,11 @@ public class UserManageController {
         }else {
             msg = "添加用户失败！";
         }
-        List<User> users = null;
-        users = userService.selectAllUser();
-        request.setAttribute("users",users);
+        PageInfo<User> pageInfo=userService.conditionQueryPage(null,null,null );
+        request.setAttribute("pageInfo",pageInfo);
+        request.setAttribute("users",pageInfo.getList());
+        request.setAttribute("conditions","");
+        request.setAttribute("keywords","");
         request.setAttribute("msg",msg);
         return "user-manage";
     }
@@ -51,11 +53,11 @@ public class UserManageController {
         User user = new User();
         String msg = "";
         int result = 0;
-        if(file.getName().endsWith(".xlsx")){
+        if(file.getOriginalFilename().endsWith(".xlsx")){
             msg = "系统不支持excel-2007（以.xlsx结尾的文件)格式，请使用excel 97-2003（以.xls结尾的文件）";
             request.setAttribute("msg",msg);
-            return "user-manage";
-        }else if(file.getName().endsWith(".xls")) {
+            System.out.println(msg);
+        }else if(file.getOriginalFilename().endsWith(".xls")) {
             try {
                 //也可以用request获取上传文件
                 //MultipartFile  fileFile = request.getFile("file"); //这里是页面的name属性
@@ -86,28 +88,121 @@ public class UserManageController {
                     user.setPwd(map.get(5));
 
                     try {
-                        result += userService.insertSelective(user);
+                        if(userService.countByPid(user.getPid()) == 0){
+                            result += userService.insertSelective(user);
+                        }else {
+                            msg += "员工编号为:" + user.getPid() +"的用户已经存在!\\n";
+                            continue;
+                        }
                     } catch (Exception e) {
-                        msg = "导入失败！已成功" + result + "条，请检查数据是否正确！";
+                        msg = "数据库插入异常！";
+                        System.out.println(msg);
+                        PageInfo<User> pageInfo=userService.conditionQueryPage(null,null,null );
+                        request.setAttribute("pageInfo",pageInfo);
+                        request.setAttribute("users",pageInfo.getList());
+                        request.setAttribute("conditions","");
+                        request.setAttribute("keywords","");
                         request.setAttribute("msg", msg);
                         return "user-manage";
                     }
                 }
-                if (result == 0) {
-                    msg = "导入用户信息失败！";
-                } else {
-                    msg = "成功导入" + result + "条信息，失败" + (rowsNum - result - 1) + "条";
-                }
+
+                msg += "成功导入" + result + "条信息，失败" + (rowsNum - result - 1) + "条!";
+
             } catch (IOException e) {
                 e.printStackTrace();
             } catch (BiffException e) {
                 e.printStackTrace();
             }
         }
-        List<User> users = null;
-        users = userService.selectAllUser();
-        request.setAttribute("users",users);
+        PageInfo<User> pageInfo=userService.conditionQueryPage(null,null,null );
+        request.setAttribute("pageInfo",pageInfo);
+        request.setAttribute("users",pageInfo.getList());
+        request.setAttribute("conditions","");
+        request.setAttribute("keywords","");
+        request.setAttribute("msg",msg);
         return "user-manage";
     }
 
+    //单个删除用户信息
+    @RequestMapping("/deleteUser")
+    public String deleteUser(HttpServletRequest request){
+        String pid = request.getParameter("pid");
+        String msg = "";
+        if(pid != ""&&pid != null){
+            int result = userService.deleteByPrimaryKey(pid);
+            if(result == 1){
+                msg = "删除成功！";
+            }else {
+                msg ="删除失败！";
+            }
+        }
+        PageInfo<User> pageInfo=userService.conditionQueryPage(null,null,null );
+        request.setAttribute("pageInfo",pageInfo);
+        request.setAttribute("users",pageInfo.getList());
+        request.setAttribute("conditions","");
+        request.setAttribute("keywords","");
+        request.setAttribute("msg",msg);
+        return "user-manage";
+    }
+
+    //批量删除用户
+    @RequestMapping("/delChecked")
+    public  String delChecked(HttpServletRequest request){
+        String msg = "";
+        int success = 0;
+        int fail = 0;
+        String[] ids = request.getParameterValues("ids");
+        if(ids!=null) {
+            for (int i = 0; i < ids.length; i++) {
+
+                if (userService.deleteByPrimaryKey(ids[i]) == 1) {
+                    success++;
+                } else {
+                    fail++;
+                }
+            }
+        }
+        msg="成功删除" + success + "条记录，失败" + fail + "条记录！";
+        PageInfo<User> pageInfo=userService.conditionQueryPage(null,null,null );
+        request.setAttribute("pageInfo",pageInfo);
+        request.setAttribute("users",pageInfo.getList());
+        request.setAttribute("conditions","");
+        request.setAttribute("keywords","");
+        request.setAttribute("msg",msg);
+        return "user-manage";
+    }
+    //查询用户
+    @RequestMapping("/searchUser")
+    public String searchUser(HttpServletRequest request, String conditions, String keywords,Integer pageNum){
+        String msg = "";
+        PageInfo<User> pageInfo=userService.conditionQueryPage(pageNum,conditions,keywords );
+        request.setAttribute("pageInfo",pageInfo);
+        request.setAttribute("users",pageInfo.getList());
+        request.setAttribute("conditions",conditions);
+        request.setAttribute("keywords",keywords);
+        if(pageInfo.getList()==null){
+            msg="没有查询到数据！";
+        }
+        request.setAttribute("msg",msg);
+        return "user-manage";
+    }
+
+    //
+    @RequestMapping("/editUser")
+    public String editUser(HttpServletRequest request,User user){
+        String msg="";
+        if(userService.updateByPid(user)==1){
+            msg="修改成功！";
+        }else{
+            msg="修改失败！";
+        }
+        PageInfo<User> pageInfo=userService.conditionQueryPage(null,null,null );
+        request.setAttribute("pageInfo",pageInfo);
+        request.setAttribute("users",pageInfo.getList());
+        request.setAttribute("conditions","");
+        request.setAttribute("keywords","");
+        request.setAttribute("msg",msg);
+        return "user-manage";
+    }
 }

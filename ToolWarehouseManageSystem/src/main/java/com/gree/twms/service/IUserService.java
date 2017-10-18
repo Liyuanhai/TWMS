@@ -1,9 +1,8 @@
 package com.gree.twms.service;
 
 
+import com.github.pagehelper.PageInfo;
 import com.gree.twms.pojo.User;
-
-import java.util.List;
 
 
 public interface IUserService {
@@ -14,6 +13,15 @@ public interface IUserService {
     //插入User
     int insertSelective(User record);
 
-    //显示所有用户
-    List<User> selectAllUser();
+
+    //删除用户
+    int deleteByPrimaryKey(String pid);
+
+    //分页条件查询用户
+    PageInfo<User> conditionQueryPage(Integer pageNum, String conditions, String keywords);
+
+    //按条件统计数量
+    int countByPid(String pID);
+
+    int updateByPid(User record);
 }
