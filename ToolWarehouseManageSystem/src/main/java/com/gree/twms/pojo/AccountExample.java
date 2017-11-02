@@ -1,7 +1,6 @@
 package com.gree.twms.pojo;
 
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 
 public class AccountExample {
@@ -103,6 +102,66 @@ public class AccountExample {
                 throw new RuntimeException("Between values for " + property + " cannot be null");
             }
             criteria.add(new Criterion(condition, value1, value2));
+        }
+
+        public Criteria andIdIsNull() {
+            addCriterion("id is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andIdIsNotNull() {
+            addCriterion("id is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andIdEqualTo(Integer value) {
+            addCriterion("id =", value, "id");
+            return (Criteria) this;
+        }
+
+        public Criteria andIdNotEqualTo(Integer value) {
+            addCriterion("id <>", value, "id");
+            return (Criteria) this;
+        }
+
+        public Criteria andIdGreaterThan(Integer value) {
+            addCriterion("id >", value, "id");
+            return (Criteria) this;
+        }
+
+        public Criteria andIdGreaterThanOrEqualTo(Integer value) {
+            addCriterion("id >=", value, "id");
+            return (Criteria) this;
+        }
+
+        public Criteria andIdLessThan(Integer value) {
+            addCriterion("id <", value, "id");
+            return (Criteria) this;
+        }
+
+        public Criteria andIdLessThanOrEqualTo(Integer value) {
+            addCriterion("id <=", value, "id");
+            return (Criteria) this;
+        }
+
+        public Criteria andIdIn(List<Integer> values) {
+            addCriterion("id in", values, "id");
+            return (Criteria) this;
+        }
+
+        public Criteria andIdNotIn(List<Integer> values) {
+            addCriterion("id not in", values, "id");
+            return (Criteria) this;
+        }
+
+        public Criteria andIdBetween(Integer value1, Integer value2) {
+            addCriterion("id between", value1, value2, "id");
+            return (Criteria) this;
+        }
+
+        public Criteria andIdNotBetween(Integer value1, Integer value2) {
+            addCriterion("id not between", value1, value2, "id");
+            return (Criteria) this;
         }
 
         public Criteria andTidIsNull() {
@@ -525,6 +584,76 @@ public class AccountExample {
             return (Criteria) this;
         }
 
+        public Criteria andReturntimeIsNull() {
+            addCriterion("returnTime is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andReturntimeIsNotNull() {
+            addCriterion("returnTime is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andReturntimeEqualTo(String value) {
+            addCriterion("returnTime =", value, "returntime");
+            return (Criteria) this;
+        }
+
+        public Criteria andReturntimeNotEqualTo(String value) {
+            addCriterion("returnTime <>", value, "returntime");
+            return (Criteria) this;
+        }
+
+        public Criteria andReturntimeGreaterThan(String value) {
+            addCriterion("returnTime >", value, "returntime");
+            return (Criteria) this;
+        }
+
+        public Criteria andReturntimeGreaterThanOrEqualTo(String value) {
+            addCriterion("returnTime >=", value, "returntime");
+            return (Criteria) this;
+        }
+
+        public Criteria andReturntimeLessThan(String value) {
+            addCriterion("returnTime <", value, "returntime");
+            return (Criteria) this;
+        }
+
+        public Criteria andReturntimeLessThanOrEqualTo(String value) {
+            addCriterion("returnTime <=", value, "returntime");
+            return (Criteria) this;
+        }
+
+        public Criteria andReturntimeLike(String value) {
+            addCriterion("returnTime like", value, "returntime");
+            return (Criteria) this;
+        }
+
+        public Criteria andReturntimeNotLike(String value) {
+            addCriterion("returnTime not like", value, "returntime");
+            return (Criteria) this;
+        }
+
+        public Criteria andReturntimeIn(List<String> values) {
+            addCriterion("returnTime in", values, "returntime");
+            return (Criteria) this;
+        }
+
+        public Criteria andReturntimeNotIn(List<String> values) {
+            addCriterion("returnTime not in", values, "returntime");
+            return (Criteria) this;
+        }
+
+        public Criteria andReturntimeBetween(String value1, String value2) {
+            addCriterion("returnTime between", value1, value2, "returntime");
+            return (Criteria) this;
+        }
+
+        public Criteria andReturntimeNotBetween(String value1, String value2) {
+            addCriterion("returnTime not between", value1, value2, "returntime");
+            return (Criteria) this;
+        }
+
         public Criteria andBorrowtimeIsNull() {
             addCriterion("borrowTime is null");
             return (Criteria) this;
@@ -535,52 +664,62 @@ public class AccountExample {
             return (Criteria) this;
         }
 
-        public Criteria andBorrowtimeEqualTo(Date value) {
+        public Criteria andBorrowtimeEqualTo(String value) {
             addCriterion("borrowTime =", value, "borrowtime");
             return (Criteria) this;
         }
 
-        public Criteria andBorrowtimeNotEqualTo(Date value) {
+        public Criteria andBorrowtimeNotEqualTo(String value) {
             addCriterion("borrowTime <>", value, "borrowtime");
             return (Criteria) this;
         }
 
-        public Criteria andBorrowtimeGreaterThan(Date value) {
+        public Criteria andBorrowtimeGreaterThan(String value) {
             addCriterion("borrowTime >", value, "borrowtime");
             return (Criteria) this;
         }
 
-        public Criteria andBorrowtimeGreaterThanOrEqualTo(Date value) {
+        public Criteria andBorrowtimeGreaterThanOrEqualTo(String value) {
             addCriterion("borrowTime >=", value, "borrowtime");
             return (Criteria) this;
         }
 
-        public Criteria andBorrowtimeLessThan(Date value) {
+        public Criteria andBorrowtimeLessThan(String value) {
             addCriterion("borrowTime <", value, "borrowtime");
             return (Criteria) this;
         }
 
-        public Criteria andBorrowtimeLessThanOrEqualTo(Date value) {
+        public Criteria andBorrowtimeLessThanOrEqualTo(String value) {
             addCriterion("borrowTime <=", value, "borrowtime");
             return (Criteria) this;
         }
 
-        public Criteria andBorrowtimeIn(List<Date> values) {
+        public Criteria andBorrowtimeLike(String value) {
+            addCriterion("borrowTime like", value, "borrowtime");
+            return (Criteria) this;
+        }
+
+        public Criteria andBorrowtimeNotLike(String value) {
+            addCriterion("borrowTime not like", value, "borrowtime");
+            return (Criteria) this;
+        }
+
+        public Criteria andBorrowtimeIn(List<String> values) {
             addCriterion("borrowTime in", values, "borrowtime");
             return (Criteria) this;
         }
 
-        public Criteria andBorrowtimeNotIn(List<Date> values) {
+        public Criteria andBorrowtimeNotIn(List<String> values) {
             addCriterion("borrowTime not in", values, "borrowtime");
             return (Criteria) this;
         }
 
-        public Criteria andBorrowtimeBetween(Date value1, Date value2) {
+        public Criteria andBorrowtimeBetween(String value1, String value2) {
             addCriterion("borrowTime between", value1, value2, "borrowtime");
             return (Criteria) this;
         }
 
-        public Criteria andBorrowtimeNotBetween(Date value1, Date value2) {
+        public Criteria andBorrowtimeNotBetween(String value1, String value2) {
             addCriterion("borrowTime not between", value1, value2, "borrowtime");
             return (Criteria) this;
         }

@@ -1,7 +1,6 @@
 package com.gree.twms.pojo;
 
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 
 public class ToolExample {
@@ -465,52 +464,62 @@ public class ToolExample {
             return (Criteria) this;
         }
 
-        public Criteria andMaketimeEqualTo(Date value) {
+        public Criteria andMaketimeEqualTo(String value) {
             addCriterion("makeTime =", value, "maketime");
             return (Criteria) this;
         }
 
-        public Criteria andMaketimeNotEqualTo(Date value) {
+        public Criteria andMaketimeNotEqualTo(String value) {
             addCriterion("makeTime <>", value, "maketime");
             return (Criteria) this;
         }
 
-        public Criteria andMaketimeGreaterThan(Date value) {
+        public Criteria andMaketimeGreaterThan(String value) {
             addCriterion("makeTime >", value, "maketime");
             return (Criteria) this;
         }
 
-        public Criteria andMaketimeGreaterThanOrEqualTo(Date value) {
+        public Criteria andMaketimeGreaterThanOrEqualTo(String value) {
             addCriterion("makeTime >=", value, "maketime");
             return (Criteria) this;
         }
 
-        public Criteria andMaketimeLessThan(Date value) {
+        public Criteria andMaketimeLessThan(String value) {
             addCriterion("makeTime <", value, "maketime");
             return (Criteria) this;
         }
 
-        public Criteria andMaketimeLessThanOrEqualTo(Date value) {
+        public Criteria andMaketimeLessThanOrEqualTo(String value) {
             addCriterion("makeTime <=", value, "maketime");
             return (Criteria) this;
         }
 
-        public Criteria andMaketimeIn(List<Date> values) {
+        public Criteria andMaketimeLike(String value) {
+            addCriterion("makeTime like", value, "maketime");
+            return (Criteria) this;
+        }
+
+        public Criteria andMaketimeNotLike(String value) {
+            addCriterion("makeTime not like", value, "maketime");
+            return (Criteria) this;
+        }
+
+        public Criteria andMaketimeIn(List<String> values) {
             addCriterion("makeTime in", values, "maketime");
             return (Criteria) this;
         }
 
-        public Criteria andMaketimeNotIn(List<Date> values) {
+        public Criteria andMaketimeNotIn(List<String> values) {
             addCriterion("makeTime not in", values, "maketime");
             return (Criteria) this;
         }
 
-        public Criteria andMaketimeBetween(Date value1, Date value2) {
+        public Criteria andMaketimeBetween(String value1, String value2) {
             addCriterion("makeTime between", value1, value2, "maketime");
             return (Criteria) this;
         }
 
-        public Criteria andMaketimeNotBetween(Date value1, Date value2) {
+        public Criteria andMaketimeNotBetween(String value1, String value2) {
             addCriterion("makeTime not between", value1, value2, "maketime");
             return (Criteria) this;
         }

@@ -7,6 +7,7 @@ import com.gree.twms.service.IUserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.io.IOException;
@@ -32,19 +33,16 @@ public class UserManageController {
     @RequestMapping("/insertUser")
     public String insertUser(User user,HttpServletRequest request){
         String msg="";
-        int result = userService.insertSelective(user);
-        if(result == 1){
-            msg = "添加用户成功！";
+        if(userService.countByPid(user.getPid()) == 0){
+            if(userService.insertSelective(user)==1){
+                msg = "添加用户成功！";
+            }else {
+                msg = "添加用户失败！";
+            }
         }else {
-            msg = "添加用户失败！";
+            msg += "员工编号为:" + user.getPid() +"的用户已经存在!\\n";
         }
-        PageInfo<User> pageInfo=userService.conditionQueryPage(null,null,null );
-        request.setAttribute("pageInfo",pageInfo);
-        request.setAttribute("users",pageInfo.getList());
-        request.setAttribute("conditions","");
-        request.setAttribute("keywords","");
-        request.setAttribute("msg",msg);
-        return "user-manage";
+        return searchUser(request,null,null,null,msg);
     }
 
     //导入用户信息
@@ -97,13 +95,7 @@ public class UserManageController {
                     } catch (Exception e) {
                         msg = "数据库插入异常！";
                         System.out.println(msg);
-                        PageInfo<User> pageInfo=userService.conditionQueryPage(null,null,null );
-                        request.setAttribute("pageInfo",pageInfo);
-                        request.setAttribute("users",pageInfo.getList());
-                        request.setAttribute("conditions","");
-                        request.setAttribute("keywords","");
-                        request.setAttribute("msg", msg);
-                        return "user-manage";
+                        return searchUser(request,null,null,null,msg);
                     }
                 }
 
@@ -115,13 +107,7 @@ public class UserManageController {
                 e.printStackTrace();
             }
         }
-        PageInfo<User> pageInfo=userService.conditionQueryPage(null,null,null );
-        request.setAttribute("pageInfo",pageInfo);
-        request.setAttribute("users",pageInfo.getList());
-        request.setAttribute("conditions","");
-        request.setAttribute("keywords","");
-        request.setAttribute("msg",msg);
-        return "user-manage";
+        return searchUser(request,null,null,null,msg);
     }
 
     //单个删除用户信息
@@ -129,7 +115,7 @@ public class UserManageController {
     public String deleteUser(HttpServletRequest request){
         String pid = request.getParameter("pid");
         String msg = "";
-        if(pid != ""&&pid != null){
+        if(!pid.equals("")){
             int result = userService.deleteByPrimaryKey(pid);
             if(result == 1){
                 msg = "删除成功！";
@@ -137,26 +123,21 @@ public class UserManageController {
                 msg ="删除失败！";
             }
         }
-        PageInfo<User> pageInfo=userService.conditionQueryPage(null,null,null );
-        request.setAttribute("pageInfo",pageInfo);
-        request.setAttribute("users",pageInfo.getList());
-        request.setAttribute("conditions","");
-        request.setAttribute("keywords","");
-        request.setAttribute("msg",msg);
-        return "user-manage";
+        return searchUser(request,null,null,null,msg);
     }
 
     //批量删除用户
-    @RequestMapping("/delChecked")
-    public  String delChecked(HttpServletRequest request){
+    @ResponseBody
+    @RequestMapping("/delCheckedUser")
+    public  Map<Object,Object> delCheckedUser(String[] checkID){
         String msg = "";
+        Map<Object,Object> resultMap=new HashMap<Object,Object>();
         int success = 0;
         int fail = 0;
-        String[] ids = request.getParameterValues("ids");
-        if(ids!=null) {
-            for (int i = 0; i < ids.length; i++) {
+        if(checkID!=null) {
+            for (int i = 0; i < checkID.length; i++) {
 
-                if (userService.deleteByPrimaryKey(ids[i]) == 1) {
+                if (userService.deleteByPrimaryKey(checkID[i]) == 1) {
                     success++;
                 } else {
                     fail++;
@@ -164,25 +145,30 @@ public class UserManageController {
             }
         }
         msg="成功删除" + success + "条记录，失败" + fail + "条记录！";
-        PageInfo<User> pageInfo=userService.conditionQueryPage(null,null,null );
-        request.setAttribute("pageInfo",pageInfo);
-        request.setAttribute("users",pageInfo.getList());
-        request.setAttribute("conditions","");
-        request.setAttribute("keywords","");
-        request.setAttribute("msg",msg);
-        return "user-manage";
+        resultMap.put("success",true);
+        resultMap.put("msg",msg);
+        return resultMap;
     }
     //查询用户
     @RequestMapping("/searchUser")
-    public String searchUser(HttpServletRequest request, String conditions, String keywords,Integer pageNum){
-        String msg = "";
-        PageInfo<User> pageInfo=userService.conditionQueryPage(pageNum,conditions,keywords );
-        request.setAttribute("pageInfo",pageInfo);
-        request.setAttribute("users",pageInfo.getList());
-        request.setAttribute("conditions",conditions);
-        request.setAttribute("keywords",keywords);
-        if(pageInfo.getList()==null){
-            msg="没有查询到数据！";
+    public String searchUser(HttpServletRequest request, String conditions, String keywords,Integer pageNum,String msg){
+        User loginUser = (User) request.getSession().getAttribute("userInfo");
+        if(loginUser.getRoleid()==1){
+            PageInfo<User> pageInfo=userService.conditionQueryPage(pageNum,conditions,keywords );
+            request.setAttribute("pageInfo",pageInfo);
+            request.setAttribute("users",pageInfo.getList());
+            request.setAttribute("conditions",conditions);
+            request.setAttribute("keywords",keywords);
+            if(pageInfo.getList().isEmpty()){
+                if(msg==null){
+                    msg = "没有查询到数据！";
+                }else{
+                    msg +="\\n没有查询到数据！";
+                }
+
+            }
+        }else{
+            msg = "您的管理权限不够，请与管理员联系！";
         }
         request.setAttribute("msg",msg);
         return "user-manage";
@@ -192,17 +178,16 @@ public class UserManageController {
     @RequestMapping("/editUser")
     public String editUser(HttpServletRequest request,User user){
         String msg="";
-        if(userService.updateByPid(user)==1){
-            msg="修改成功！";
+        User loginUser = (User) request.getSession().getAttribute("userInfo");
+        if(loginUser.getRoleid()==1){
+            if(userService.updateByPid(user)==1){
+                msg="修改成功！";
+            }else{
+                msg="修改失败！";
+            }
         }else{
-            msg="修改失败！";
+            msg = "您的管理权限不够，请与管理员联系！";
         }
-        PageInfo<User> pageInfo=userService.conditionQueryPage(null,null,null );
-        request.setAttribute("pageInfo",pageInfo);
-        request.setAttribute("users",pageInfo.getList());
-        request.setAttribute("conditions","");
-        request.setAttribute("keywords","");
-        request.setAttribute("msg",msg);
-        return "user-manage";
+        return searchUser(request,null,null,null,msg);
     }
 }

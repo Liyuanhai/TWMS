@@ -1,8 +1,8 @@
 package com.gree.twms.pojo;
 
-import java.util.Date;
-
 public class Account {
+    private Integer id;
+
     private String tid;
 
     private String tname;
@@ -15,7 +15,9 @@ public class Account {
 
     private String pname;
 
-    private Date borrowtime;
+    private String returntime;
+
+    private String borrowtime;
 
     private String remarks1;
 
@@ -26,6 +28,14 @@ public class Account {
     private String remarks4;
 
     private String remarks5;
+
+    public Integer getId() {
+        return id;
+    }
+
+    public void setId(Integer id) {
+        this.id = id;
+    }
 
     public String getTid() {
         return tid;
@@ -75,12 +85,20 @@ public class Account {
         this.pname = pname == null ? null : pname.trim();
     }
 
-    public Date getBorrowtime() {
+    public String getReturntime() {
+        return returntime;
+    }
+
+    public void setReturntime(String returntime) {
+        this.returntime = returntime == null ? null : returntime.trim();
+    }
+
+    public String getBorrowtime() {
         return borrowtime;
     }
 
-    public void setBorrowtime(Date borrowtime) {
-        this.borrowtime = borrowtime;
+    public void setBorrowtime(String borrowtime) {
+        this.borrowtime = borrowtime == null ? null : borrowtime.trim();
     }
 
     public String getRemarks1() {

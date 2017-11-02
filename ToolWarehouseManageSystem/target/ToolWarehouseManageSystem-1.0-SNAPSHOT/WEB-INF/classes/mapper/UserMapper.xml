@@ -1,0 +1,305 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.gree.twms.dao.UserMapper" >
+  <resultMap id="BaseResultMap" type="com.gree.twms.pojo.User" >
+    <id column="pID" property="pid" jdbcType="VARCHAR" />
+    <result column="pName" property="pname" jdbcType="VARCHAR" />
+    <result column="sex" property="sex" jdbcType="VARCHAR" />
+    <result column="team" property="team" jdbcType="VARCHAR" />
+    <result column="roleID" property="roleid" jdbcType="INTEGER" />
+    <result column="pwd" property="pwd" jdbcType="VARCHAR" />
+    <result column="remarks1" property="remarks1" jdbcType="VARCHAR" />
+    <result column="remarks2" property="remarks2" jdbcType="VARCHAR" />
+    <result column="remarks3" property="remarks3" jdbcType="VARCHAR" />
+    <result column="remarks4" property="remarks4" jdbcType="VARCHAR" />
+    <result column="remarks5" property="remarks5" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    pID, pName, sex, team, roleID, pwd, remarks1, remarks2, remarks3, remarks4, remarks5
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.gree.twms.pojo.UserExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from user
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from user
+    where pID = #{pid,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from user
+    where pID = #{pid,jdbcType=VARCHAR}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.gree.twms.pojo.UserExample" >
+    delete from user
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.gree.twms.pojo.User" >
+    insert into user (pID, pName, sex, 
+      team, roleID, pwd, 
+      remarks1, remarks2, remarks3, 
+      remarks4, remarks5)
+    values (#{pid,jdbcType=VARCHAR}, #{pname,jdbcType=VARCHAR}, #{sex,jdbcType=VARCHAR}, 
+      #{team,jdbcType=VARCHAR}, #{roleid,jdbcType=INTEGER}, #{pwd,jdbcType=VARCHAR}, 
+      #{remarks1,jdbcType=VARCHAR}, #{remarks2,jdbcType=VARCHAR}, #{remarks3,jdbcType=VARCHAR}, 
+      #{remarks4,jdbcType=VARCHAR}, #{remarks5,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.gree.twms.pojo.User" >
+    insert into user
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="pid != null" >
+        pID,
+      </if>
+      <if test="pname != null" >
+        pName,
+      </if>
+      <if test="sex != null" >
+        sex,
+      </if>
+      <if test="team != null" >
+        team,
+      </if>
+      <if test="roleid != null" >
+        roleID,
+      </if>
+      <if test="pwd != null" >
+        pwd,
+      </if>
+      <if test="remarks1 != null" >
+        remarks1,
+      </if>
+      <if test="remarks2 != null" >
+        remarks2,
+      </if>
+      <if test="remarks3 != null" >
+        remarks3,
+      </if>
+      <if test="remarks4 != null" >
+        remarks4,
+      </if>
+      <if test="remarks5 != null" >
+        remarks5,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="pid != null" >
+        #{pid,jdbcType=VARCHAR},
+      </if>
+      <if test="pname != null" >
+        #{pname,jdbcType=VARCHAR},
+      </if>
+      <if test="sex != null" >
+        #{sex,jdbcType=VARCHAR},
+      </if>
+      <if test="team != null" >
+        #{team,jdbcType=VARCHAR},
+      </if>
+      <if test="roleid != null" >
+        #{roleid,jdbcType=INTEGER},
+      </if>
+      <if test="pwd != null" >
+        #{pwd,jdbcType=VARCHAR},
+      </if>
+      <if test="remarks1 != null" >
+        #{remarks1,jdbcType=VARCHAR},
+      </if>
+      <if test="remarks2 != null" >
+        #{remarks2,jdbcType=VARCHAR},
+      </if>
+      <if test="remarks3 != null" >
+        #{remarks3,jdbcType=VARCHAR},
+      </if>
+      <if test="remarks4 != null" >
+        #{remarks4,jdbcType=VARCHAR},
+      </if>
+      <if test="remarks5 != null" >
+        #{remarks5,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.gree.twms.pojo.UserExample" resultType="java.lang.Integer" >
+    select count(*) from user
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update user
+    <set >
+      <if test="record.pid != null" >
+        pID = #{record.pid,jdbcType=VARCHAR},
+      </if>
+      <if test="record.pname != null" >
+        pName = #{record.pname,jdbcType=VARCHAR},
+      </if>
+      <if test="record.sex != null" >
+        sex = #{record.sex,jdbcType=VARCHAR},
+      </if>
+      <if test="record.team != null" >
+        team = #{record.team,jdbcType=VARCHAR},
+      </if>
+      <if test="record.roleid != null" >
+        roleID = #{record.roleid,jdbcType=INTEGER},
+      </if>
+      <if test="record.pwd != null" >
+        pwd = #{record.pwd,jdbcType=VARCHAR},
+      </if>
+      <if test="record.remarks1 != null" >
+        remarks1 = #{record.remarks1,jdbcType=VARCHAR},
+      </if>
+      <if test="record.remarks2 != null" >
+        remarks2 = #{record.remarks2,jdbcType=VARCHAR},
+      </if>
+      <if test="record.remarks3 != null" >
+        remarks3 = #{record.remarks3,jdbcType=VARCHAR},
+      </if>
+      <if test="record.remarks4 != null" >
+        remarks4 = #{record.remarks4,jdbcType=VARCHAR},
+      </if>
+      <if test="record.remarks5 != null" >
+        remarks5 = #{record.remarks5,jdbcType=VARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update user
+    set pID = #{record.pid,jdbcType=VARCHAR},
+      pName = #{record.pname,jdbcType=VARCHAR},
+      sex = #{record.sex,jdbcType=VARCHAR},
+      team = #{record.team,jdbcType=VARCHAR},
+      roleID = #{record.roleid,jdbcType=INTEGER},
+      pwd = #{record.pwd,jdbcType=VARCHAR},
+      remarks1 = #{record.remarks1,jdbcType=VARCHAR},
+      remarks2 = #{record.remarks2,jdbcType=VARCHAR},
+      remarks3 = #{record.remarks3,jdbcType=VARCHAR},
+      remarks4 = #{record.remarks4,jdbcType=VARCHAR},
+      remarks5 = #{record.remarks5,jdbcType=VARCHAR}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.gree.twms.pojo.User" >
+    update user
+    <set >
+      <if test="pname != null" >
+        pName = #{pname,jdbcType=VARCHAR},
+      </if>
+      <if test="sex != null" >
+        sex = #{sex,jdbcType=VARCHAR},
+      </if>
+      <if test="team != null" >
+        team = #{team,jdbcType=VARCHAR},
+      </if>
+      <if test="roleid != null" >
+        roleID = #{roleid,jdbcType=INTEGER},
+      </if>
+      <if test="pwd != null" >
+        pwd = #{pwd,jdbcType=VARCHAR},
+      </if>
+      <if test="remarks1 != null" >
+        remarks1 = #{remarks1,jdbcType=VARCHAR},
+      </if>
+      <if test="remarks2 != null" >
+        remarks2 = #{remarks2,jdbcType=VARCHAR},
+      </if>
+      <if test="remarks3 != null" >
+        remarks3 = #{remarks3,jdbcType=VARCHAR},
+      </if>
+      <if test="remarks4 != null" >
+        remarks4 = #{remarks4,jdbcType=VARCHAR},
+      </if>
+      <if test="remarks5 != null" >
+        remarks5 = #{remarks5,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where pID = #{pid,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.gree.twms.pojo.User" >
+    update user
+    set pName = #{pname,jdbcType=VARCHAR},
+      sex = #{sex,jdbcType=VARCHAR},
+      team = #{team,jdbcType=VARCHAR},
+      roleID = #{roleid,jdbcType=INTEGER},
+      pwd = #{pwd,jdbcType=VARCHAR},
+      remarks1 = #{remarks1,jdbcType=VARCHAR},
+      remarks2 = #{remarks2,jdbcType=VARCHAR},
+      remarks3 = #{remarks3,jdbcType=VARCHAR},
+      remarks4 = #{remarks4,jdbcType=VARCHAR},
+      remarks5 = #{remarks5,jdbcType=VARCHAR}
+    where pID = #{pid,jdbcType=VARCHAR}
+  </update>
+</mapper>

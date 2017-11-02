@@ -7,10 +7,10 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.boot.web.servlet.ServletComponentScan;
 import org.springframework.boot.web.support.SpringBootServletInitializer;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
-import org.springframework.transaction.annotation.EnableTransactionManagement;
 
 import java.util.Properties;
 
@@ -21,7 +21,7 @@ import java.util.Properties;
 @ComponentScan(basePackages = {"com.gree.twms.controller","com.gree.twms.service"})
 //启动标识
 @SpringBootApplication
-@EnableTransactionManagement
+@ServletComponentScan
 //mapper 接口扫描
 @MapperScan(basePackages = "com.gree.twms.dao")
 public class RunApplication extends SpringBootServletInitializer {

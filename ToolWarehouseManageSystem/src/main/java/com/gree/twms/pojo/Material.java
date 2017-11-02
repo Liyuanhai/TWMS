@@ -1,15 +1,15 @@
 package com.gree.twms.pojo;
 
-import java.util.Date;
-
 public class Material {
+    private Integer id;
+
     private String tname;
 
     private String tmodel;
 
     private String producer;
 
-    private Date productiontime;
+    private String productiontime;
 
     private String enclosureurl;
 
@@ -24,6 +24,14 @@ public class Material {
     private String remarks4;
 
     private String remarks5;
+
+    public Integer getId() {
+        return id;
+    }
+
+    public void setId(Integer id) {
+        this.id = id;
+    }
 
     public String getTname() {
         return tname;
@@ -49,12 +57,12 @@ public class Material {
         this.producer = producer == null ? null : producer.trim();
     }
 
-    public Date getProductiontime() {
+    public String getProductiontime() {
         return productiontime;
     }
 
-    public void setProductiontime(Date productiontime) {
-        this.productiontime = productiontime;
+    public void setProductiontime(String productiontime) {
+        this.productiontime = productiontime == null ? null : productiontime.trim();
     }
 
     public String getEnclosureurl() {

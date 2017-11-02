@@ -1,7 +1,6 @@
 package com.gree.twms.pojo;
 
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 
 public class VersionExample {
@@ -103,6 +102,66 @@ public class VersionExample {
                 throw new RuntimeException("Between values for " + property + " cannot be null");
             }
             criteria.add(new Criterion(condition, value1, value2));
+        }
+
+        public Criteria andIdIsNull() {
+            addCriterion("id is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andIdIsNotNull() {
+            addCriterion("id is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andIdEqualTo(Integer value) {
+            addCriterion("id =", value, "id");
+            return (Criteria) this;
+        }
+
+        public Criteria andIdNotEqualTo(Integer value) {
+            addCriterion("id <>", value, "id");
+            return (Criteria) this;
+        }
+
+        public Criteria andIdGreaterThan(Integer value) {
+            addCriterion("id >", value, "id");
+            return (Criteria) this;
+        }
+
+        public Criteria andIdGreaterThanOrEqualTo(Integer value) {
+            addCriterion("id >=", value, "id");
+            return (Criteria) this;
+        }
+
+        public Criteria andIdLessThan(Integer value) {
+            addCriterion("id <", value, "id");
+            return (Criteria) this;
+        }
+
+        public Criteria andIdLessThanOrEqualTo(Integer value) {
+            addCriterion("id <=", value, "id");
+            return (Criteria) this;
+        }
+
+        public Criteria andIdIn(List<Integer> values) {
+            addCriterion("id in", values, "id");
+            return (Criteria) this;
+        }
+
+        public Criteria andIdNotIn(List<Integer> values) {
+            addCriterion("id not in", values, "id");
+            return (Criteria) this;
+        }
+
+        public Criteria andIdBetween(Integer value1, Integer value2) {
+            addCriterion("id between", value1, value2, "id");
+            return (Criteria) this;
+        }
+
+        public Criteria andIdNotBetween(Integer value1, Integer value2) {
+            addCriterion("id not between", value1, value2, "id");
+            return (Criteria) this;
         }
 
         public Criteria andPcbidIsNull() {
@@ -465,52 +524,62 @@ public class VersionExample {
             return (Criteria) this;
         }
 
-        public Criteria andArrivetimeEqualTo(Date value) {
+        public Criteria andArrivetimeEqualTo(String value) {
             addCriterion("arriveTime =", value, "arrivetime");
             return (Criteria) this;
         }
 
-        public Criteria andArrivetimeNotEqualTo(Date value) {
+        public Criteria andArrivetimeNotEqualTo(String value) {
             addCriterion("arriveTime <>", value, "arrivetime");
             return (Criteria) this;
         }
 
-        public Criteria andArrivetimeGreaterThan(Date value) {
+        public Criteria andArrivetimeGreaterThan(String value) {
             addCriterion("arriveTime >", value, "arrivetime");
             return (Criteria) this;
         }
 
-        public Criteria andArrivetimeGreaterThanOrEqualTo(Date value) {
+        public Criteria andArrivetimeGreaterThanOrEqualTo(String value) {
             addCriterion("arriveTime >=", value, "arrivetime");
             return (Criteria) this;
         }
 
-        public Criteria andArrivetimeLessThan(Date value) {
+        public Criteria andArrivetimeLessThan(String value) {
             addCriterion("arriveTime <", value, "arrivetime");
             return (Criteria) this;
         }
 
-        public Criteria andArrivetimeLessThanOrEqualTo(Date value) {
+        public Criteria andArrivetimeLessThanOrEqualTo(String value) {
             addCriterion("arriveTime <=", value, "arrivetime");
             return (Criteria) this;
         }
 
-        public Criteria andArrivetimeIn(List<Date> values) {
+        public Criteria andArrivetimeLike(String value) {
+            addCriterion("arriveTime like", value, "arrivetime");
+            return (Criteria) this;
+        }
+
+        public Criteria andArrivetimeNotLike(String value) {
+            addCriterion("arriveTime not like", value, "arrivetime");
+            return (Criteria) this;
+        }
+
+        public Criteria andArrivetimeIn(List<String> values) {
             addCriterion("arriveTime in", values, "arrivetime");
             return (Criteria) this;
         }
 
-        public Criteria andArrivetimeNotIn(List<Date> values) {
+        public Criteria andArrivetimeNotIn(List<String> values) {
             addCriterion("arriveTime not in", values, "arrivetime");
             return (Criteria) this;
         }
 
-        public Criteria andArrivetimeBetween(Date value1, Date value2) {
+        public Criteria andArrivetimeBetween(String value1, String value2) {
             addCriterion("arriveTime between", value1, value2, "arrivetime");
             return (Criteria) this;
         }
 
-        public Criteria andArrivetimeNotBetween(Date value1, Date value2) {
+        public Criteria andArrivetimeNotBetween(String value1, String value2) {
             addCriterion("arriveTime not between", value1, value2, "arrivetime");
             return (Criteria) this;
         }
@@ -805,52 +874,62 @@ public class VersionExample {
             return (Criteria) this;
         }
 
-        public Criteria andChengetimeEqualTo(Date value) {
+        public Criteria andChengetimeEqualTo(String value) {
             addCriterion("chengeTime =", value, "chengetime");
             return (Criteria) this;
         }
 
-        public Criteria andChengetimeNotEqualTo(Date value) {
+        public Criteria andChengetimeNotEqualTo(String value) {
             addCriterion("chengeTime <>", value, "chengetime");
             return (Criteria) this;
         }
 
-        public Criteria andChengetimeGreaterThan(Date value) {
+        public Criteria andChengetimeGreaterThan(String value) {
             addCriterion("chengeTime >", value, "chengetime");
             return (Criteria) this;
         }
 
-        public Criteria andChengetimeGreaterThanOrEqualTo(Date value) {
+        public Criteria andChengetimeGreaterThanOrEqualTo(String value) {
             addCriterion("chengeTime >=", value, "chengetime");
             return (Criteria) this;
         }
 
-        public Criteria andChengetimeLessThan(Date value) {
+        public Criteria andChengetimeLessThan(String value) {
             addCriterion("chengeTime <", value, "chengetime");
             return (Criteria) this;
         }
 
-        public Criteria andChengetimeLessThanOrEqualTo(Date value) {
+        public Criteria andChengetimeLessThanOrEqualTo(String value) {
             addCriterion("chengeTime <=", value, "chengetime");
             return (Criteria) this;
         }
 
-        public Criteria andChengetimeIn(List<Date> values) {
+        public Criteria andChengetimeLike(String value) {
+            addCriterion("chengeTime like", value, "chengetime");
+            return (Criteria) this;
+        }
+
+        public Criteria andChengetimeNotLike(String value) {
+            addCriterion("chengeTime not like", value, "chengetime");
+            return (Criteria) this;
+        }
+
+        public Criteria andChengetimeIn(List<String> values) {
             addCriterion("chengeTime in", values, "chengetime");
             return (Criteria) this;
         }
 
-        public Criteria andChengetimeNotIn(List<Date> values) {
+        public Criteria andChengetimeNotIn(List<String> values) {
             addCriterion("chengeTime not in", values, "chengetime");
             return (Criteria) this;
         }
 
-        public Criteria andChengetimeBetween(Date value1, Date value2) {
+        public Criteria andChengetimeBetween(String value1, String value2) {
             addCriterion("chengeTime between", value1, value2, "chengetime");
             return (Criteria) this;
         }
 
-        public Criteria andChengetimeNotBetween(Date value1, Date value2) {
+        public Criteria andChengetimeNotBetween(String value1, String value2) {
             addCriterion("chengeTime not between", value1, value2, "chengetime");
             return (Criteria) this;
         }

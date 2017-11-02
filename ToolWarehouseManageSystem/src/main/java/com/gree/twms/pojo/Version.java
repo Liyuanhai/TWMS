@@ -1,8 +1,8 @@
 package com.gree.twms.pojo;
 
-import java.util.Date;
-
 public class Version {
+    private Integer id;
+
     private String pcbid;
 
     private String oldversion;
@@ -13,7 +13,7 @@ public class Version {
 
     private String fctchenge;
 
-    private Date arrivetime;
+    private String arrivetime;
 
     private String ictchengeid;
 
@@ -23,7 +23,7 @@ public class Version {
 
     private String icftchengeid;
 
-    private Date chengetime;
+    private String chengetime;
 
     private String completion;
 
@@ -36,6 +36,14 @@ public class Version {
     private String remarks4;
 
     private String remarks5;
+
+    public Integer getId() {
+        return id;
+    }
+
+    public void setId(Integer id) {
+        this.id = id;
+    }
 
     public String getPcbid() {
         return pcbid;
@@ -77,12 +85,12 @@ public class Version {
         this.fctchenge = fctchenge == null ? null : fctchenge.trim();
     }
 
-    public Date getArrivetime() {
+    public String getArrivetime() {
         return arrivetime;
     }
 
-    public void setArrivetime(Date arrivetime) {
-        this.arrivetime = arrivetime;
+    public void setArrivetime(String arrivetime) {
+        this.arrivetime = arrivetime == null ? null : arrivetime.trim();
     }
 
     public String getIctchengeid() {
@@ -117,12 +125,12 @@ public class Version {
         this.icftchengeid = icftchengeid == null ? null : icftchengeid.trim();
     }
 
-    public Date getChengetime() {
+    public String getChengetime() {
         return chengetime;
     }
 
-    public void setChengetime(Date chengetime) {
-        this.chengetime = chengetime;
+    public void setChengetime(String chengetime) {
+        this.chengetime = chengetime == null ? null : chengetime.trim();
     }
 
     public String getCompletion() {

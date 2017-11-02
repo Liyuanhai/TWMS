@@ -1,15 +1,15 @@
 package com.gree.twms.pojo;
 
-import java.util.Date;
-
 public class Review {
+    private Integer id;
+
     private String tname;
 
     private String pcbmodel;
 
     private String tid;
 
-    private Date reviewtime;
+    private String reviewtime;
 
     private String conclusion;
 
@@ -35,6 +35,14 @@ public class Review {
 
     private String remarks5;
 
+    public Integer getId() {
+        return id;
+    }
+
+    public void setId(Integer id) {
+        this.id = id;
+    }
+
     public String getTname() {
         return tname;
     }
@@ -59,12 +67,12 @@ public class Review {
         this.tid = tid == null ? null : tid.trim();
     }
 
-    public Date getReviewtime() {
+    public String getReviewtime() {
         return reviewtime;
     }
 
-    public void setReviewtime(Date reviewtime) {
-        this.reviewtime = reviewtime;
+    public void setReviewtime(String reviewtime) {
+        this.reviewtime = reviewtime == null ? null : reviewtime.trim();
     }
 
     public String getConclusion() {

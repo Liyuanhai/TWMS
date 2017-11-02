@@ -2,17 +2,18 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="com.gree.twms.dao.VersionMapper" >
   <resultMap id="BaseResultMap" type="com.gree.twms.pojo.Version" >
+    <id column="id" property="id" jdbcType="INTEGER" />
     <result column="PCBID" property="pcbid" jdbcType="VARCHAR" />
     <result column="oldVersion" property="oldversion" jdbcType="VARCHAR" />
     <result column="newVersion" property="newversion" jdbcType="VARCHAR" />
     <result column="ICTChenge" property="ictchenge" jdbcType="VARCHAR" />
     <result column="FCTChenge" property="fctchenge" jdbcType="VARCHAR" />
-    <result column="arriveTime" property="arrivetime" jdbcType="TIMESTAMP" />
+    <result column="arriveTime" property="arrivetime" jdbcType="VARCHAR" />
     <result column="ICTChengeID" property="ictchengeid" jdbcType="VARCHAR" />
     <result column="FCTChengeID" property="fctchengeid" jdbcType="VARCHAR" />
     <result column="OTFChengeID" property="otfchengeid" jdbcType="VARCHAR" />
     <result column="ICFTChengeID" property="icftchengeid" jdbcType="VARCHAR" />
-    <result column="chengeTime" property="chengetime" jdbcType="TIMESTAMP" />
+    <result column="chengeTime" property="chengetime" jdbcType="VARCHAR" />
     <result column="completion" property="completion" jdbcType="VARCHAR" />
     <result column="remarks1" property="remarks1" jdbcType="VARCHAR" />
     <result column="remarks2" property="remarks2" jdbcType="VARCHAR" />
@@ -20,23 +21,121 @@
     <result column="remarks4" property="remarks4" jdbcType="VARCHAR" />
     <result column="remarks5" property="remarks5" jdbcType="VARCHAR" />
   </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    id, PCBID, oldVersion, newVersion, ICTChenge, FCTChenge, arriveTime, ICTChengeID, 
+    FCTChengeID, OTFChengeID, ICFTChengeID, chengeTime, completion, remarks1, remarks2, 
+    remarks3, remarks4, remarks5
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.gree.twms.pojo.VersionExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from version
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from version
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from version
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.gree.twms.pojo.VersionExample" >
+    delete from version
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
   <insert id="insert" parameterType="com.gree.twms.pojo.Version" >
-    insert into version (PCBID, oldVersion, newVersion, 
-      ICTChenge, FCTChenge, arriveTime, 
-      ICTChengeID, FCTChengeID, OTFChengeID, 
-      ICFTChengeID, chengeTime, completion, 
-      remarks1, remarks2, remarks3, 
-      remarks4, remarks5)
-    values (#{pcbid,jdbcType=VARCHAR}, #{oldversion,jdbcType=VARCHAR}, #{newversion,jdbcType=VARCHAR}, 
-      #{ictchenge,jdbcType=VARCHAR}, #{fctchenge,jdbcType=VARCHAR}, #{arrivetime,jdbcType=TIMESTAMP}, 
-      #{ictchengeid,jdbcType=VARCHAR}, #{fctchengeid,jdbcType=VARCHAR}, #{otfchengeid,jdbcType=VARCHAR}, 
-      #{icftchengeid,jdbcType=VARCHAR}, #{chengetime,jdbcType=TIMESTAMP}, #{completion,jdbcType=VARCHAR}, 
-      #{remarks1,jdbcType=VARCHAR}, #{remarks2,jdbcType=VARCHAR}, #{remarks3,jdbcType=VARCHAR}, 
-      #{remarks4,jdbcType=VARCHAR}, #{remarks5,jdbcType=VARCHAR})
+    insert into version (id, PCBID, oldVersion, 
+      newVersion, ICTChenge, FCTChenge, 
+      arriveTime, ICTChengeID, FCTChengeID, 
+      OTFChengeID, ICFTChengeID, chengeTime, 
+      completion, remarks1, remarks2, 
+      remarks3, remarks4, remarks5
+      )
+    values (#{id,jdbcType=INTEGER}, #{pcbid,jdbcType=VARCHAR}, #{oldversion,jdbcType=VARCHAR}, 
+      #{newversion,jdbcType=VARCHAR}, #{ictchenge,jdbcType=VARCHAR}, #{fctchenge,jdbcType=VARCHAR}, 
+      #{arrivetime,jdbcType=VARCHAR}, #{ictchengeid,jdbcType=VARCHAR}, #{fctchengeid,jdbcType=VARCHAR}, 
+      #{otfchengeid,jdbcType=VARCHAR}, #{icftchengeid,jdbcType=VARCHAR}, #{chengetime,jdbcType=VARCHAR}, 
+      #{completion,jdbcType=VARCHAR}, #{remarks1,jdbcType=VARCHAR}, #{remarks2,jdbcType=VARCHAR}, 
+      #{remarks3,jdbcType=VARCHAR}, #{remarks4,jdbcType=VARCHAR}, #{remarks5,jdbcType=VARCHAR}
+      )
   </insert>
   <insert id="insertSelective" parameterType="com.gree.twms.pojo.Version" >
     insert into version
     <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
       <if test="pcbid != null" >
         PCBID,
       </if>
@@ -90,6 +189,9 @@
       </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
       <if test="pcbid != null" >
         #{pcbid,jdbcType=VARCHAR},
       </if>
@@ -106,7 +208,7 @@
         #{fctchenge,jdbcType=VARCHAR},
       </if>
       <if test="arrivetime != null" >
-        #{arrivetime,jdbcType=TIMESTAMP},
+        #{arrivetime,jdbcType=VARCHAR},
       </if>
       <if test="ictchengeid != null" >
         #{ictchengeid,jdbcType=VARCHAR},
@@ -121,7 +223,7 @@
         #{icftchengeid,jdbcType=VARCHAR},
       </if>
       <if test="chengetime != null" >
-        #{chengetime,jdbcType=TIMESTAMP},
+        #{chengetime,jdbcType=VARCHAR},
       </if>
       <if test="completion != null" >
         #{completion,jdbcType=VARCHAR},
@@ -143,4 +245,174 @@
       </if>
     </trim>
   </insert>
+  <select id="countByExample" parameterType="com.gree.twms.pojo.VersionExample" resultType="java.lang.Integer" >
+    select count(*) from version
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update version
+    <set >
+      <if test="record.id != null" >
+        id = #{record.id,jdbcType=INTEGER},
+      </if>
+      <if test="record.pcbid != null" >
+        PCBID = #{record.pcbid,jdbcType=VARCHAR},
+      </if>
+      <if test="record.oldversion != null" >
+        oldVersion = #{record.oldversion,jdbcType=VARCHAR},
+      </if>
+      <if test="record.newversion != null" >
+        newVersion = #{record.newversion,jdbcType=VARCHAR},
+      </if>
+      <if test="record.ictchenge != null" >
+        ICTChenge = #{record.ictchenge,jdbcType=VARCHAR},
+      </if>
+      <if test="record.fctchenge != null" >
+        FCTChenge = #{record.fctchenge,jdbcType=VARCHAR},
+      </if>
+      <if test="record.arrivetime != null" >
+        arriveTime = #{record.arrivetime,jdbcType=VARCHAR},
+      </if>
+      <if test="record.ictchengeid != null" >
+        ICTChengeID = #{record.ictchengeid,jdbcType=VARCHAR},
+      </if>
+      <if test="record.fctchengeid != null" >
+        FCTChengeID = #{record.fctchengeid,jdbcType=VARCHAR},
+      </if>
+      <if test="record.otfchengeid != null" >
+        OTFChengeID = #{record.otfchengeid,jdbcType=VARCHAR},
+      </if>
+      <if test="record.icftchengeid != null" >
+        ICFTChengeID = #{record.icftchengeid,jdbcType=VARCHAR},
+      </if>
+      <if test="record.chengetime != null" >
+        chengeTime = #{record.chengetime,jdbcType=VARCHAR},
+      </if>
+      <if test="record.completion != null" >
+        completion = #{record.completion,jdbcType=VARCHAR},
+      </if>
+      <if test="record.remarks1 != null" >
+        remarks1 = #{record.remarks1,jdbcType=VARCHAR},
+      </if>
+      <if test="record.remarks2 != null" >
+        remarks2 = #{record.remarks2,jdbcType=VARCHAR},
+      </if>
+      <if test="record.remarks3 != null" >
+        remarks3 = #{record.remarks3,jdbcType=VARCHAR},
+      </if>
+      <if test="record.remarks4 != null" >
+        remarks4 = #{record.remarks4,jdbcType=VARCHAR},
+      </if>
+      <if test="record.remarks5 != null" >
+        remarks5 = #{record.remarks5,jdbcType=VARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update version
+    set id = #{record.id,jdbcType=INTEGER},
+      PCBID = #{record.pcbid,jdbcType=VARCHAR},
+      oldVersion = #{record.oldversion,jdbcType=VARCHAR},
+      newVersion = #{record.newversion,jdbcType=VARCHAR},
+      ICTChenge = #{record.ictchenge,jdbcType=VARCHAR},
+      FCTChenge = #{record.fctchenge,jdbcType=VARCHAR},
+      arriveTime = #{record.arrivetime,jdbcType=VARCHAR},
+      ICTChengeID = #{record.ictchengeid,jdbcType=VARCHAR},
+      FCTChengeID = #{record.fctchengeid,jdbcType=VARCHAR},
+      OTFChengeID = #{record.otfchengeid,jdbcType=VARCHAR},
+      ICFTChengeID = #{record.icftchengeid,jdbcType=VARCHAR},
+      chengeTime = #{record.chengetime,jdbcType=VARCHAR},
+      completion = #{record.completion,jdbcType=VARCHAR},
+      remarks1 = #{record.remarks1,jdbcType=VARCHAR},
+      remarks2 = #{record.remarks2,jdbcType=VARCHAR},
+      remarks3 = #{record.remarks3,jdbcType=VARCHAR},
+      remarks4 = #{record.remarks4,jdbcType=VARCHAR},
+      remarks5 = #{record.remarks5,jdbcType=VARCHAR}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.gree.twms.pojo.Version" >
+    update version
+    <set >
+      <if test="pcbid != null" >
+        PCBID = #{pcbid,jdbcType=VARCHAR},
+      </if>
+      <if test="oldversion != null" >
+        oldVersion = #{oldversion,jdbcType=VARCHAR},
+      </if>
+      <if test="newversion != null" >
+        newVersion = #{newversion,jdbcType=VARCHAR},
+      </if>
+      <if test="ictchenge != null" >
+        ICTChenge = #{ictchenge,jdbcType=VARCHAR},
+      </if>
+      <if test="fctchenge != null" >
+        FCTChenge = #{fctchenge,jdbcType=VARCHAR},
+      </if>
+      <if test="arrivetime != null" >
+        arriveTime = #{arrivetime,jdbcType=VARCHAR},
+      </if>
+      <if test="ictchengeid != null" >
+        ICTChengeID = #{ictchengeid,jdbcType=VARCHAR},
+      </if>
+      <if test="fctchengeid != null" >
+        FCTChengeID = #{fctchengeid,jdbcType=VARCHAR},
+      </if>
+      <if test="otfchengeid != null" >
+        OTFChengeID = #{otfchengeid,jdbcType=VARCHAR},
+      </if>
+      <if test="icftchengeid != null" >
+        ICFTChengeID = #{icftchengeid,jdbcType=VARCHAR},
+      </if>
+      <if test="chengetime != null" >
+        chengeTime = #{chengetime,jdbcType=VARCHAR},
+      </if>
+      <if test="completion != null" >
+        completion = #{completion,jdbcType=VARCHAR},
+      </if>
+      <if test="remarks1 != null" >
+        remarks1 = #{remarks1,jdbcType=VARCHAR},
+      </if>
+      <if test="remarks2 != null" >
+        remarks2 = #{remarks2,jdbcType=VARCHAR},
+      </if>
+      <if test="remarks3 != null" >
+        remarks3 = #{remarks3,jdbcType=VARCHAR},
+      </if>
+      <if test="remarks4 != null" >
+        remarks4 = #{remarks4,jdbcType=VARCHAR},
+      </if>
+      <if test="remarks5 != null" >
+        remarks5 = #{remarks5,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.gree.twms.pojo.Version" >
+    update version
+    set PCBID = #{pcbid,jdbcType=VARCHAR},
+      oldVersion = #{oldversion,jdbcType=VARCHAR},
+      newVersion = #{newversion,jdbcType=VARCHAR},
+      ICTChenge = #{ictchenge,jdbcType=VARCHAR},
+      FCTChenge = #{fctchenge,jdbcType=VARCHAR},
+      arriveTime = #{arrivetime,jdbcType=VARCHAR},
+      ICTChengeID = #{ictchengeid,jdbcType=VARCHAR},
+      FCTChengeID = #{fctchengeid,jdbcType=VARCHAR},
+      OTFChengeID = #{otfchengeid,jdbcType=VARCHAR},
+      ICFTChengeID = #{icftchengeid,jdbcType=VARCHAR},
+      chengeTime = #{chengetime,jdbcType=VARCHAR},
+      completion = #{completion,jdbcType=VARCHAR},
+      remarks1 = #{remarks1,jdbcType=VARCHAR},
+      remarks2 = #{remarks2,jdbcType=VARCHAR},
+      remarks3 = #{remarks3,jdbcType=VARCHAR},
+      remarks4 = #{remarks4,jdbcType=VARCHAR},
+      remarks5 = #{remarks5,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
 </mapper>

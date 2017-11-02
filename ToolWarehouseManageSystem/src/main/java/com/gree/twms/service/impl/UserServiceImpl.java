@@ -44,17 +44,10 @@ public class UserServiceImpl implements IUserService {
     }
 
     @Override
-//    @Transactional(propagation = Propagation.REQUIRED,isolation = Isolation.DEFAULT,timeout=36000,rollbackFor=Exception.class)
     public int insertSelective(User record) {
         return userMapper.insertSelective(record);
     }
 
-//    @Override
-//    public List<User> selectAllUser() {
-//        UserExample userExample = new UserExample();
-//
-//        return userMapper.selectAllUser();
-//    }
 
     @Override
     public int deleteByPrimaryKey(String pid) {
@@ -107,4 +100,6 @@ public class UserServiceImpl implements IUserService {
         }
         return 0;
     }
+
+
 }

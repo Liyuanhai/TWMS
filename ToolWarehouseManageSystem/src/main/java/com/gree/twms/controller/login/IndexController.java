@@ -1,13 +1,16 @@
 package com.gree.twms.controller.login;
 
 
-import com.github.pagehelper.PageInfo;
 import com.gree.twms.pojo.User;
 import com.gree.twms.service.IUserService;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
+
+import java.util.HashMap;
+import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 
@@ -17,6 +20,7 @@ public class IndexController {
 
     @Autowired
     private IUserService userService;
+
 
     @RequestMapping("/logging")
     public String logging(HttpServletRequest request, User user){
@@ -36,6 +40,30 @@ public class IndexController {
                 return "index";
             }
         }
+    }
+    @ResponseBody
+    @RequestMapping("/editPassword")
+    public Map<Object,Object> editPassword(HttpServletRequest request,String oldPassword,String newPassword){
+        String msg = "";
+        Map<Object,Object> resultMap = new HashMap<Object,Object>();
+        User user = (User) request.getSession().getAttribute("userInfo");
+        user.setPwd(oldPassword);
+        if(userService.selectIsValidUser(user)!=null){
+            user.setPwd(newPassword);
+            if(userService.updateByPid(user)==1){
+                msg = "修改成功！";
+                resultMap.put("success",true);
+            }else{
+                msg="修改失败！";
+                resultMap.put("fail",false);
+            }
+        }else{
+            msg="原密码错误，请重新输入！";
+            resultMap.put("fail",false);
+        }
+
+        resultMap.put("msg",msg);
+        return resultMap;
     }
     //跳转登录页面
     @RequestMapping("/index")
@@ -60,33 +88,6 @@ public class IndexController {
         return "login";
     }
 
-    //跳转到用户管理界面
-    @RequestMapping("/user-manage")
-    public  String userManage(HttpServletRequest request){
-        String msg = "";
-        if(isLogged(request)) {
-            PageInfo<User> pageInfo=userService.conditionQueryPage(null,null,null );
-            request.setAttribute("pageInfo",pageInfo);
-            request.setAttribute("users",pageInfo.getList());
-            request.setAttribute("conditions","");
-            request.setAttribute("keywords","");
-            request.setAttribute("msg",msg);
-            return "user-manage";
-        }else {
-            return "login";
-        }
-    }
-
-    //跳转到仓库管理界面
-    @RequestMapping("/warehouse-manage")
-    public  String warehouseManage(HttpServletRequest request){
-        if(isLogged(request)) {
-            return "warehouse-manage";
-        }else {
-            return "login";
-        }
-    }
-
     //跳转到工装评审界面
     @RequestMapping("/tool-review")
     public  String toolReview(){
@@ -109,42 +110,6 @@ public class IndexController {
     @RequestMapping("/version-update")
     public  String versionUpdate(){
         return "version-update";
-    }
-
-    //跳转到工装信息管理界面
-    @RequestMapping("/tool-manage")
-    public  String toolManage(){
-        return "tool-manage";
-    }
-
-    //跳转到出入库台帐管理界面
-    @RequestMapping("/IO-account")
-    public  String IOAccount(){
-        return "IO-account";
-    }
-
-    //跳转到评审表台帐管理界面
-    @RequestMapping("/review-account")
-    public  String reviewAccount(){
-        return "review-account";
-    }
-
-    //跳转到维修记录台帐管理界面
-    @RequestMapping("/repair-account")
-    public  String repairAccount(){
-        return "repair-account";
-    }
-
-    //跳转到版本升级台帐管理界面
-    @RequestMapping("/update-account")
-    public  String updateAccount(){
-        return "update-account";
-    }
-
-    //跳转到物料信息台帐管理界面
-    @RequestMapping("/material-account")
-    public  String materialAccount(){
-        return "material-account";
     }
 
     public boolean isLogged(HttpServletRequest request){

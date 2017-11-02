@@ -1,7 +1,6 @@
 package com.gree.twms.pojo;
 
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 
 public class ReviewExample {
@@ -103,6 +102,66 @@ public class ReviewExample {
                 throw new RuntimeException("Between values for " + property + " cannot be null");
             }
             criteria.add(new Criterion(condition, value1, value2));
+        }
+
+        public Criteria andIdIsNull() {
+            addCriterion("id is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andIdIsNotNull() {
+            addCriterion("id is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andIdEqualTo(Integer value) {
+            addCriterion("id =", value, "id");
+            return (Criteria) this;
+        }
+
+        public Criteria andIdNotEqualTo(Integer value) {
+            addCriterion("id <>", value, "id");
+            return (Criteria) this;
+        }
+
+        public Criteria andIdGreaterThan(Integer value) {
+            addCriterion("id >", value, "id");
+            return (Criteria) this;
+        }
+
+        public Criteria andIdGreaterThanOrEqualTo(Integer value) {
+            addCriterion("id >=", value, "id");
+            return (Criteria) this;
+        }
+
+        public Criteria andIdLessThan(Integer value) {
+            addCriterion("id <", value, "id");
+            return (Criteria) this;
+        }
+
+        public Criteria andIdLessThanOrEqualTo(Integer value) {
+            addCriterion("id <=", value, "id");
+            return (Criteria) this;
+        }
+
+        public Criteria andIdIn(List<Integer> values) {
+            addCriterion("id in", values, "id");
+            return (Criteria) this;
+        }
+
+        public Criteria andIdNotIn(List<Integer> values) {
+            addCriterion("id not in", values, "id");
+            return (Criteria) this;
+        }
+
+        public Criteria andIdBetween(Integer value1, Integer value2) {
+            addCriterion("id between", value1, value2, "id");
+            return (Criteria) this;
+        }
+
+        public Criteria andIdNotBetween(Integer value1, Integer value2) {
+            addCriterion("id not between", value1, value2, "id");
+            return (Criteria) this;
         }
 
         public Criteria andTnameIsNull() {
@@ -325,52 +384,62 @@ public class ReviewExample {
             return (Criteria) this;
         }
 
-        public Criteria andReviewtimeEqualTo(Date value) {
+        public Criteria andReviewtimeEqualTo(String value) {
             addCriterion("reviewTime =", value, "reviewtime");
             return (Criteria) this;
         }
 
-        public Criteria andReviewtimeNotEqualTo(Date value) {
+        public Criteria andReviewtimeNotEqualTo(String value) {
             addCriterion("reviewTime <>", value, "reviewtime");
             return (Criteria) this;
         }
 
-        public Criteria andReviewtimeGreaterThan(Date value) {
+        public Criteria andReviewtimeGreaterThan(String value) {
             addCriterion("reviewTime >", value, "reviewtime");
             return (Criteria) this;
         }
 
-        public Criteria andReviewtimeGreaterThanOrEqualTo(Date value) {
+        public Criteria andReviewtimeGreaterThanOrEqualTo(String value) {
             addCriterion("reviewTime >=", value, "reviewtime");
             return (Criteria) this;
         }
 
-        public Criteria andReviewtimeLessThan(Date value) {
+        public Criteria andReviewtimeLessThan(String value) {
             addCriterion("reviewTime <", value, "reviewtime");
             return (Criteria) this;
         }
 
-        public Criteria andReviewtimeLessThanOrEqualTo(Date value) {
+        public Criteria andReviewtimeLessThanOrEqualTo(String value) {
             addCriterion("reviewTime <=", value, "reviewtime");
             return (Criteria) this;
         }
 
-        public Criteria andReviewtimeIn(List<Date> values) {
+        public Criteria andReviewtimeLike(String value) {
+            addCriterion("reviewTime like", value, "reviewtime");
+            return (Criteria) this;
+        }
+
+        public Criteria andReviewtimeNotLike(String value) {
+            addCriterion("reviewTime not like", value, "reviewtime");
+            return (Criteria) this;
+        }
+
+        public Criteria andReviewtimeIn(List<String> values) {
             addCriterion("reviewTime in", values, "reviewtime");
             return (Criteria) this;
         }
 
-        public Criteria andReviewtimeNotIn(List<Date> values) {
+        public Criteria andReviewtimeNotIn(List<String> values) {
             addCriterion("reviewTime not in", values, "reviewtime");
             return (Criteria) this;
         }
 
-        public Criteria andReviewtimeBetween(Date value1, Date value2) {
+        public Criteria andReviewtimeBetween(String value1, String value2) {
             addCriterion("reviewTime between", value1, value2, "reviewtime");
             return (Criteria) this;
         }
 
-        public Criteria andReviewtimeNotBetween(Date value1, Date value2) {
+        public Criteria andReviewtimeNotBetween(String value1, String value2) {
             addCriterion("reviewTime not between", value1, value2, "reviewtime");
             return (Criteria) this;
         }

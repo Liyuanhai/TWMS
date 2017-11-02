@@ -1,7 +1,5 @@
 package com.gree.twms.pojo;
 
-import java.util.Date;
-
 public class Tool {
     private String tid;
 
@@ -13,7 +11,7 @@ public class Tool {
 
     private String compatibility;
 
-    private Date maketime;
+    private String maketime;
 
     private String remarks1;
 
@@ -65,12 +63,12 @@ public class Tool {
         this.compatibility = compatibility == null ? null : compatibility.trim();
     }
 
-    public Date getMaketime() {
+    public String getMaketime() {
         return maketime;
     }
 
-    public void setMaketime(Date maketime) {
-        this.maketime = maketime;
+    public void setMaketime(String maketime) {
+        this.maketime = maketime == null ? null : maketime.trim();
     }
 
     public String getRemarks1() {

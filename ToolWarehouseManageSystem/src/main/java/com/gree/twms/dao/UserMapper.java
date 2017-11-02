@@ -2,10 +2,8 @@ package com.gree.twms.dao;
 
 import com.gree.twms.pojo.User;
 import com.gree.twms.pojo.UserExample;
-
-import org.apache.ibatis.annotations.Param;
-
 import java.util.List;
+import org.apache.ibatis.annotations.Param;
 
 public interface UserMapper {
     int countByExample(UserExample example);
@@ -22,12 +20,12 @@ public interface UserMapper {
 
     User selectByPrimaryKey(String pid);
 
-    int updateByExampleSelective(@Param("record") User record, @Param("example") UserExample example);
+    int updateByExampleSelective(@Param("record") User record, @Param("example") UserExample
+            example);
 
     int updateByExample(@Param("record") User record, @Param("example") UserExample example);
 
     int updateByPrimaryKeySelective(User record);
 
     int updateByPrimaryKey(User record);
-
 }

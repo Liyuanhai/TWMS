@@ -1,11 +1,11 @@
 package com.gree.twms.pojo;
 
-import java.util.Date;
-
 public class Repair {
+    private Integer id;
+
     private String shift;
 
-    private Date sendtime;
+    private String sendtime;
 
     private String sendpeople;
 
@@ -15,7 +15,7 @@ public class Repair {
 
     private String tmodel;
 
-    private Integer tid;
+    private String tid;
 
     private String sendfaultdescription;
 
@@ -39,6 +39,14 @@ public class Repair {
 
     private String remarks5;
 
+    public Integer getId() {
+        return id;
+    }
+
+    public void setId(Integer id) {
+        this.id = id;
+    }
+
     public String getShift() {
         return shift;
     }
@@ -47,12 +55,12 @@ public class Repair {
         this.shift = shift == null ? null : shift.trim();
     }
 
-    public Date getSendtime() {
+    public String getSendtime() {
         return sendtime;
     }
 
-    public void setSendtime(Date sendtime) {
-        this.sendtime = sendtime;
+    public void setSendtime(String sendtime) {
+        this.sendtime = sendtime == null ? null : sendtime.trim();
     }
 
     public String getSendpeople() {
@@ -87,12 +95,12 @@ public class Repair {
         this.tmodel = tmodel == null ? null : tmodel.trim();
     }
 
-    public Integer getTid() {
+    public String getTid() {
         return tid;
     }
 
-    public void setTid(Integer tid) {
-        this.tid = tid;
+    public void setTid(String tid) {
+        this.tid = tid == null ? null : tid.trim();
     }
 
     public String getSendfaultdescription() {

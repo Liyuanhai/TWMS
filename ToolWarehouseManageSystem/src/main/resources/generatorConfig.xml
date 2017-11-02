@@ -67,52 +67,28 @@
         </javaClientGenerator>
 
 
-        <table tableName="account" domainObjectName="Account"
-               enableCountByExample="false" enableUpdateByExample="false"
-               enableDeleteByExample="false" enableSelectByExample="false"
-               selectByExampleQueryId="false">
+        <table tableName="account" domainObjectName="Account">
         </table>
 
-        <table tableName="material" domainObjectName="Material"
-               enableCountByExample="false" enableUpdateByExample="false"
-               enableDeleteByExample="false" enableSelectByExample="false"
-               selectByExampleQueryId="false">
+        <table tableName="material" domainObjectName="Material">
         </table>
 
-        <table tableName="repair" domainObjectName="Repair"
-               enableCountByExample="false" enableUpdateByExample="false"
-               enableDeleteByExample="false" enableSelectByExample="false"
-               selectByExampleQueryId="false">
+        <table tableName="repair" domainObjectName="Repair">
         </table>
 
-        <table tableName="review" domainObjectName="Review"
-               enableCountByExample="false" enableUpdateByExample="false"
-               enableDeleteByExample="false" enableSelectByExample="false"
-               selectByExampleQueryId="false">
+        <table tableName="review" domainObjectName="Review">
         </table>
 
-        <table tableName="tool" domainObjectName="Tool"
-               enableCountByExample="false" enableUpdateByExample="false"
-               enableDeleteByExample="false" enableSelectByExample="false"
-               selectByExampleQueryId="false">
+        <table tableName="tool" domainObjectName="Tool">
         </table>
 
-        <table tableName="user" domainObjectName="User"
-               enableCountByExample="false" enableUpdateByExample="false"
-               enableDeleteByExample="false" enableSelectByExample="false"
-               selectByExampleQueryId="false">
+        <table tableName="user" domainObjectName="User">
         </table>
 
-        <table tableName="version" domainObjectName="Version"
-               enableCountByExample="false" enableUpdateByExample="false"
-               enableDeleteByExample="false" enableSelectByExample="false"
-               selectByExampleQueryId="false">
+        <table tableName="version" domainObjectName="Version">
         </table>
 
-        <table tableName="warehouse" domainObjectName="Warehouse"
-               enableCountByExample="false" enableUpdateByExample="false"
-               enableDeleteByExample="false" enableSelectByExample="false"
-               selectByExampleQueryId="false">
+        <table tableName="warehouse" domainObjectName="Warehouse">
         </table>
     </context>
 </generatorConfiguration>

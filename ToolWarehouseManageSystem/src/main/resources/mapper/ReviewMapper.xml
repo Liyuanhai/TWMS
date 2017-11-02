@@ -2,10 +2,11 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="com.gree.twms.dao.ReviewMapper" >
   <resultMap id="BaseResultMap" type="com.gree.twms.pojo.Review" >
+    <id column="id" property="id" jdbcType="INTEGER" />
     <result column="tName" property="tname" jdbcType="VARCHAR" />
     <result column="PCBModel" property="pcbmodel" jdbcType="VARCHAR" />
     <result column="tID" property="tid" jdbcType="VARCHAR" />
-    <result column="reviewTime" property="reviewtime" jdbcType="TIMESTAMP" />
+    <result column="reviewTime" property="reviewtime" jdbcType="VARCHAR" />
     <result column="conclusion" property="conclusion" jdbcType="VARCHAR" />
     <result column="organization" property="organization" jdbcType="VARCHAR" />
     <result column="countersign" property="countersign" jdbcType="VARCHAR" />
@@ -19,23 +20,118 @@
     <result column="remarks4" property="remarks4" jdbcType="VARCHAR" />
     <result column="remarks5" property="remarks5" jdbcType="VARCHAR" />
   </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    id, tName, PCBModel, tID, reviewTime, conclusion, organization, countersign, examine, 
+    approval, enclosureURL, remarks, remarks1, remarks2, remarks3, remarks4, remarks5
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.gree.twms.pojo.ReviewExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from review
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from review
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from review
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.gree.twms.pojo.ReviewExample" >
+    delete from review
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
   <insert id="insert" parameterType="com.gree.twms.pojo.Review" >
-    insert into review (tName, PCBModel, tID, 
-      reviewTime, conclusion, organization, 
-      countersign, examine, approval, 
-      enclosureURL, remarks, remarks1, 
-      remarks2, remarks3, remarks4, 
-      remarks5)
-    values (#{tname,jdbcType=VARCHAR}, #{pcbmodel,jdbcType=VARCHAR}, #{tid,jdbcType=VARCHAR}, 
-      #{reviewtime,jdbcType=TIMESTAMP}, #{conclusion,jdbcType=VARCHAR}, #{organization,jdbcType=VARCHAR}, 
-      #{countersign,jdbcType=VARCHAR}, #{examine,jdbcType=VARCHAR}, #{approval,jdbcType=VARCHAR}, 
-      #{enclosureurl,jdbcType=VARCHAR}, #{remarks,jdbcType=VARCHAR}, #{remarks1,jdbcType=VARCHAR}, 
-      #{remarks2,jdbcType=VARCHAR}, #{remarks3,jdbcType=VARCHAR}, #{remarks4,jdbcType=VARCHAR}, 
-      #{remarks5,jdbcType=VARCHAR})
+    insert into review (id, tName, PCBModel, 
+      tID, reviewTime, conclusion, 
+      organization, countersign, examine, 
+      approval, enclosureURL, remarks, 
+      remarks1, remarks2, remarks3, 
+      remarks4, remarks5)
+    values (#{id,jdbcType=INTEGER}, #{tname,jdbcType=VARCHAR}, #{pcbmodel,jdbcType=VARCHAR}, 
+      #{tid,jdbcType=VARCHAR}, #{reviewtime,jdbcType=VARCHAR}, #{conclusion,jdbcType=VARCHAR}, 
+      #{organization,jdbcType=VARCHAR}, #{countersign,jdbcType=VARCHAR}, #{examine,jdbcType=VARCHAR}, 
+      #{approval,jdbcType=VARCHAR}, #{enclosureurl,jdbcType=VARCHAR}, #{remarks,jdbcType=VARCHAR}, 
+      #{remarks1,jdbcType=VARCHAR}, #{remarks2,jdbcType=VARCHAR}, #{remarks3,jdbcType=VARCHAR}, 
+      #{remarks4,jdbcType=VARCHAR}, #{remarks5,jdbcType=VARCHAR})
   </insert>
   <insert id="insertSelective" parameterType="com.gree.twms.pojo.Review" >
     insert into review
     <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
       <if test="tname != null" >
         tName,
       </if>
@@ -86,6 +182,9 @@
       </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
       <if test="tname != null" >
         #{tname,jdbcType=VARCHAR},
       </if>
@@ -96,7 +195,7 @@
         #{tid,jdbcType=VARCHAR},
       </if>
       <if test="reviewtime != null" >
-        #{reviewtime,jdbcType=TIMESTAMP},
+        #{reviewtime,jdbcType=VARCHAR},
       </if>
       <if test="conclusion != null" >
         #{conclusion,jdbcType=VARCHAR},
@@ -136,4 +235,166 @@
       </if>
     </trim>
   </insert>
+  <select id="countByExample" parameterType="com.gree.twms.pojo.ReviewExample" resultType="java.lang.Integer" >
+    select count(*) from review
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update review
+    <set >
+      <if test="record.id != null" >
+        id = #{record.id,jdbcType=INTEGER},
+      </if>
+      <if test="record.tname != null" >
+        tName = #{record.tname,jdbcType=VARCHAR},
+      </if>
+      <if test="record.pcbmodel != null" >
+        PCBModel = #{record.pcbmodel,jdbcType=VARCHAR},
+      </if>
+      <if test="record.tid != null" >
+        tID = #{record.tid,jdbcType=VARCHAR},
+      </if>
+      <if test="record.reviewtime != null" >
+        reviewTime = #{record.reviewtime,jdbcType=VARCHAR},
+      </if>
+      <if test="record.conclusion != null" >
+        conclusion = #{record.conclusion,jdbcType=VARCHAR},
+      </if>
+      <if test="record.organization != null" >
+        organization = #{record.organization,jdbcType=VARCHAR},
+      </if>
+      <if test="record.countersign != null" >
+        countersign = #{record.countersign,jdbcType=VARCHAR},
+      </if>
+      <if test="record.examine != null" >
+        examine = #{record.examine,jdbcType=VARCHAR},
+      </if>
+      <if test="record.approval != null" >
+        approval = #{record.approval,jdbcType=VARCHAR},
+      </if>
+      <if test="record.enclosureurl != null" >
+        enclosureURL = #{record.enclosureurl,jdbcType=VARCHAR},
+      </if>
+      <if test="record.remarks != null" >
+        remarks = #{record.remarks,jdbcType=VARCHAR},
+      </if>
+      <if test="record.remarks1 != null" >
+        remarks1 = #{record.remarks1,jdbcType=VARCHAR},
+      </if>
+      <if test="record.remarks2 != null" >
+        remarks2 = #{record.remarks2,jdbcType=VARCHAR},
+      </if>
+      <if test="record.remarks3 != null" >
+        remarks3 = #{record.remarks3,jdbcType=VARCHAR},
+      </if>
+      <if test="record.remarks4 != null" >
+        remarks4 = #{record.remarks4,jdbcType=VARCHAR},
+      </if>
+      <if test="record.remarks5 != null" >
+        remarks5 = #{record.remarks5,jdbcType=VARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update review
+    set id = #{record.id,jdbcType=INTEGER},
+      tName = #{record.tname,jdbcType=VARCHAR},
+      PCBModel = #{record.pcbmodel,jdbcType=VARCHAR},
+      tID = #{record.tid,jdbcType=VARCHAR},
+      reviewTime = #{record.reviewtime,jdbcType=VARCHAR},
+      conclusion = #{record.conclusion,jdbcType=VARCHAR},
+      organization = #{record.organization,jdbcType=VARCHAR},
+      countersign = #{record.countersign,jdbcType=VARCHAR},
+      examine = #{record.examine,jdbcType=VARCHAR},
+      approval = #{record.approval,jdbcType=VARCHAR},
+      enclosureURL = #{record.enclosureurl,jdbcType=VARCHAR},
+      remarks = #{record.remarks,jdbcType=VARCHAR},
+      remarks1 = #{record.remarks1,jdbcType=VARCHAR},
+      remarks2 = #{record.remarks2,jdbcType=VARCHAR},
+      remarks3 = #{record.remarks3,jdbcType=VARCHAR},
+      remarks4 = #{record.remarks4,jdbcType=VARCHAR},
+      remarks5 = #{record.remarks5,jdbcType=VARCHAR}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.gree.twms.pojo.Review" >
+    update review
+    <set >
+      <if test="tname != null" >
+        tName = #{tname,jdbcType=VARCHAR},
+      </if>
+      <if test="pcbmodel != null" >
+        PCBModel = #{pcbmodel,jdbcType=VARCHAR},
+      </if>
+      <if test="tid != null" >
+        tID = #{tid,jdbcType=VARCHAR},
+      </if>
+      <if test="reviewtime != null" >
+        reviewTime = #{reviewtime,jdbcType=VARCHAR},
+      </if>
+      <if test="conclusion != null" >
+        conclusion = #{conclusion,jdbcType=VARCHAR},
+      </if>
+      <if test="organization != null" >
+        organization = #{organization,jdbcType=VARCHAR},
+      </if>
+      <if test="countersign != null" >
+        countersign = #{countersign,jdbcType=VARCHAR},
+      </if>
+      <if test="examine != null" >
+        examine = #{examine,jdbcType=VARCHAR},
+      </if>
+      <if test="approval != null" >
+        approval = #{approval,jdbcType=VARCHAR},
+      </if>
+      <if test="enclosureurl != null" >
+        enclosureURL = #{enclosureurl,jdbcType=VARCHAR},
+      </if>
+      <if test="remarks != null" >
+        remarks = #{remarks,jdbcType=VARCHAR},
+      </if>
+      <if test="remarks1 != null" >
+        remarks1 = #{remarks1,jdbcType=VARCHAR},
+      </if>
+      <if test="remarks2 != null" >
+        remarks2 = #{remarks2,jdbcType=VARCHAR},
+      </if>
+      <if test="remarks3 != null" >
+        remarks3 = #{remarks3,jdbcType=VARCHAR},
+      </if>
+      <if test="remarks4 != null" >
+        remarks4 = #{remarks4,jdbcType=VARCHAR},
+      </if>
+      <if test="remarks5 != null" >
+        remarks5 = #{remarks5,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.gree.twms.pojo.Review" >
+    update review
+    set tName = #{tname,jdbcType=VARCHAR},
+      PCBModel = #{pcbmodel,jdbcType=VARCHAR},
+      tID = #{tid,jdbcType=VARCHAR},
+      reviewTime = #{reviewtime,jdbcType=VARCHAR},
+      conclusion = #{conclusion,jdbcType=VARCHAR},
+      organization = #{organization,jdbcType=VARCHAR},
+      countersign = #{countersign,jdbcType=VARCHAR},
+      examine = #{examine,jdbcType=VARCHAR},
+      approval = #{approval,jdbcType=VARCHAR},
+      enclosureURL = #{enclosureurl,jdbcType=VARCHAR},
+      remarks = #{remarks,jdbcType=VARCHAR},
+      remarks1 = #{remarks1,jdbcType=VARCHAR},
+      remarks2 = #{remarks2,jdbcType=VARCHAR},
+      remarks3 = #{remarks3,jdbcType=VARCHAR},
+      remarks4 = #{remarks4,jdbcType=VARCHAR},
+      remarks5 = #{remarks5,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
 </mapper>

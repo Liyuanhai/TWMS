@@ -1,7 +1,6 @@
 package com.gree.twms.pojo;
 
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 
 public class RepairExample {
@@ -105,6 +104,66 @@ public class RepairExample {
             criteria.add(new Criterion(condition, value1, value2));
         }
 
+        public Criteria andIdIsNull() {
+            addCriterion("id is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andIdIsNotNull() {
+            addCriterion("id is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andIdEqualTo(Integer value) {
+            addCriterion("id =", value, "id");
+            return (Criteria) this;
+        }
+
+        public Criteria andIdNotEqualTo(Integer value) {
+            addCriterion("id <>", value, "id");
+            return (Criteria) this;
+        }
+
+        public Criteria andIdGreaterThan(Integer value) {
+            addCriterion("id >", value, "id");
+            return (Criteria) this;
+        }
+
+        public Criteria andIdGreaterThanOrEqualTo(Integer value) {
+            addCriterion("id >=", value, "id");
+            return (Criteria) this;
+        }
+
+        public Criteria andIdLessThan(Integer value) {
+            addCriterion("id <", value, "id");
+            return (Criteria) this;
+        }
+
+        public Criteria andIdLessThanOrEqualTo(Integer value) {
+            addCriterion("id <=", value, "id");
+            return (Criteria) this;
+        }
+
+        public Criteria andIdIn(List<Integer> values) {
+            addCriterion("id in", values, "id");
+            return (Criteria) this;
+        }
+
+        public Criteria andIdNotIn(List<Integer> values) {
+            addCriterion("id not in", values, "id");
+            return (Criteria) this;
+        }
+
+        public Criteria andIdBetween(Integer value1, Integer value2) {
+            addCriterion("id between", value1, value2, "id");
+            return (Criteria) this;
+        }
+
+        public Criteria andIdNotBetween(Integer value1, Integer value2) {
+            addCriterion("id not between", value1, value2, "id");
+            return (Criteria) this;
+        }
+
         public Criteria andShiftIsNull() {
             addCriterion("shift is null");
             return (Criteria) this;
@@ -185,52 +244,62 @@ public class RepairExample {
             return (Criteria) this;
         }
 
-        public Criteria andSendtimeEqualTo(Date value) {
+        public Criteria andSendtimeEqualTo(String value) {
             addCriterion("sendTime =", value, "sendtime");
             return (Criteria) this;
         }
 
-        public Criteria andSendtimeNotEqualTo(Date value) {
+        public Criteria andSendtimeNotEqualTo(String value) {
             addCriterion("sendTime <>", value, "sendtime");
             return (Criteria) this;
         }
 
-        public Criteria andSendtimeGreaterThan(Date value) {
+        public Criteria andSendtimeGreaterThan(String value) {
             addCriterion("sendTime >", value, "sendtime");
             return (Criteria) this;
         }
 
-        public Criteria andSendtimeGreaterThanOrEqualTo(Date value) {
+        public Criteria andSendtimeGreaterThanOrEqualTo(String value) {
             addCriterion("sendTime >=", value, "sendtime");
             return (Criteria) this;
         }
 
-        public Criteria andSendtimeLessThan(Date value) {
+        public Criteria andSendtimeLessThan(String value) {
             addCriterion("sendTime <", value, "sendtime");
             return (Criteria) this;
         }
 
-        public Criteria andSendtimeLessThanOrEqualTo(Date value) {
+        public Criteria andSendtimeLessThanOrEqualTo(String value) {
             addCriterion("sendTime <=", value, "sendtime");
             return (Criteria) this;
         }
 
-        public Criteria andSendtimeIn(List<Date> values) {
+        public Criteria andSendtimeLike(String value) {
+            addCriterion("sendTime like", value, "sendtime");
+            return (Criteria) this;
+        }
+
+        public Criteria andSendtimeNotLike(String value) {
+            addCriterion("sendTime not like", value, "sendtime");
+            return (Criteria) this;
+        }
+
+        public Criteria andSendtimeIn(List<String> values) {
             addCriterion("sendTime in", values, "sendtime");
             return (Criteria) this;
         }
 
-        public Criteria andSendtimeNotIn(List<Date> values) {
+        public Criteria andSendtimeNotIn(List<String> values) {
             addCriterion("sendTime not in", values, "sendtime");
             return (Criteria) this;
         }
 
-        public Criteria andSendtimeBetween(Date value1, Date value2) {
+        public Criteria andSendtimeBetween(String value1, String value2) {
             addCriterion("sendTime between", value1, value2, "sendtime");
             return (Criteria) this;
         }
 
-        public Criteria andSendtimeNotBetween(Date value1, Date value2) {
+        public Criteria andSendtimeNotBetween(String value1, String value2) {
             addCriterion("sendTime not between", value1, value2, "sendtime");
             return (Criteria) this;
         }
@@ -525,52 +594,62 @@ public class RepairExample {
             return (Criteria) this;
         }
 
-        public Criteria andTidEqualTo(Integer value) {
+        public Criteria andTidEqualTo(String value) {
             addCriterion("tID =", value, "tid");
             return (Criteria) this;
         }
 
-        public Criteria andTidNotEqualTo(Integer value) {
+        public Criteria andTidNotEqualTo(String value) {
             addCriterion("tID <>", value, "tid");
             return (Criteria) this;
         }
 
-        public Criteria andTidGreaterThan(Integer value) {
+        public Criteria andTidGreaterThan(String value) {
             addCriterion("tID >", value, "tid");
             return (Criteria) this;
         }
 
-        public Criteria andTidGreaterThanOrEqualTo(Integer value) {
+        public Criteria andTidGreaterThanOrEqualTo(String value) {
             addCriterion("tID >=", value, "tid");
             return (Criteria) this;
         }
 
-        public Criteria andTidLessThan(Integer value) {
+        public Criteria andTidLessThan(String value) {
             addCriterion("tID <", value, "tid");
             return (Criteria) this;
         }
 
-        public Criteria andTidLessThanOrEqualTo(Integer value) {
+        public Criteria andTidLessThanOrEqualTo(String value) {
             addCriterion("tID <=", value, "tid");
             return (Criteria) this;
         }
 
-        public Criteria andTidIn(List<Integer> values) {
+        public Criteria andTidLike(String value) {
+            addCriterion("tID like", value, "tid");
+            return (Criteria) this;
+        }
+
+        public Criteria andTidNotLike(String value) {
+            addCriterion("tID not like", value, "tid");
+            return (Criteria) this;
+        }
+
+        public Criteria andTidIn(List<String> values) {
             addCriterion("tID in", values, "tid");
             return (Criteria) this;
         }
 
-        public Criteria andTidNotIn(List<Integer> values) {
+        public Criteria andTidNotIn(List<String> values) {
             addCriterion("tID not in", values, "tid");
             return (Criteria) this;
         }
 
-        public Criteria andTidBetween(Integer value1, Integer value2) {
+        public Criteria andTidBetween(String value1, String value2) {
             addCriterion("tID between", value1, value2, "tid");
             return (Criteria) this;
         }
 
-        public Criteria andTidNotBetween(Integer value1, Integer value2) {
+        public Criteria andTidNotBetween(String value1, String value2) {
             addCriterion("tID not between", value1, value2, "tid");
             return (Criteria) this;
         }
