@@ -40,8 +40,8 @@ public class LoginFilter implements Filter {
             filterChain.doFilter(servletRequest,servletResponse);
         }else if (userInfo == null && !url.endsWith("logging")){
             request.setAttribute("msg","登录已过期，请重新登录！");
-            request.getRequestDispatcher(((HttpServletRequest) servletRequest).getContextPath() + "/twms/login").forward(request,response);
-            //response.sendRedirect(((HttpServletRequest) servletRequest).getContextPath() + "/twms/login");
+            //request.getRequestDispatcher(((HttpServletRequest) servletRequest).getContextPath() + "/login").forward(request,response);
+            response.sendRedirect(((HttpServletRequest) servletRequest).getContextPath() + "/login");
         }else {
             filterChain.doFilter(servletRequest,servletResponse);
         }

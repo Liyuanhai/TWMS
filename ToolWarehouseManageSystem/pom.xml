@@ -70,11 +70,11 @@
     </dependency>
 
     <!--spring热部署-->
-    <dependency>
+  <!--  <dependency>
       <groupId>org.springframework.boot</groupId>
       <artifactId>spring-boot-devtools</artifactId>
-      <optional>true</optional> <!-- 这个需要为 true 热部署才有效 -->
-    </dependency>
+      <optional>true</optional> &lt;!&ndash; 这个需要为 true 热部署才有效 &ndash;&gt;
+    </dependency>-->
 
     <!--JSTL-->
     <dependency>
@@ -121,6 +121,32 @@
           <overwrite>true</overwrite>
         </configuration>
       </plugin>
+
+      <plugin>
+        <groupId>org.springframework.boot</groupId>
+        <artifactId>spring-boot-maven-plugin</artifactId>
+      </plugin>
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-surefire-plugin</artifactId>
+        <version>2.18.1</version>
+        <configuration>
+          <skipTests>true</skipTests>
+        </configuration>
+      </plugin>
+
+      <!--<plugin>-->
+        <!--<groupId>org.springframework.boot</groupId>-->
+        <!--<artifactId>spring-boot-maven-plugin</artifactId>-->
+      <!--</plugin>-->
+      <!--<plugin>-->
+        <!--<groupId>org.apache.maven.plugins</groupId>-->
+        <!--<artifactId>maven-surefire-plugin</artifactId>-->
+        <!--<version>2.18.1</version>-->
+        <!--<configuration>-->
+          <!--<skipTests>true</skipTests>-->
+        <!--</configuration>-->
+      <!--</plugin>-->
 
       <!--JDK编译版本-->
       <!--<plugin>-->

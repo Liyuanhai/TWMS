@@ -16,25 +16,25 @@
     <title>工装信息管理</title>
     <meta name="description" content="Restyling jQuery UI Widgets and Elements"/>
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0"/>
-    <link rel="stylesheet" href="/css/bootstrap.min.css"/>
-    <link rel="stylesheet" href="/css/font-awesome.min.css"/>
-    <link rel="stylesheet" href="/css/ace-fonts.css"/>
-    <link rel="stylesheet" href="/css/ace.min.css" id="main-ace-style"/>
-    <link rel="stylesheet" href="/css/bootstrap-fileupload.min.css"/>
-    <link rel="stylesheet" href="/css/datepicker.css" />
-    <link rel="stylesheet" href="/css/bootstrap-timepicker.css" />
-    <link rel="stylesheet" href="/css/daterangepicker.css" />
-    <link rel="stylesheet" href="/css/bootstrap-datetimepicker.css" />
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/css/bootstrap.min.css"/>
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/css/font-awesome.min.css"/>
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/css/ace-fonts.css"/>
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/css/ace.min.css" id="main-ace-style"/>
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/css/bootstrap-fileupload.min.css"/>
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/css/datepicker.css" />
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/css/bootstrap-timepicker.css" />
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/css/daterangepicker.css" />
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/css/bootstrap-datetimepicker.css" />
     <!--[if lte IE 9]>
-    <link rel="stylesheet" href="/css/ace-part2.min.css"/>
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/css/ace-part2.min.css"/>
     <![endif]-->
     <!--[if lte IE 9]>
-    <link rel="stylesheet" href="/css/ace-ie.min.css"/>
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/css/ace-ie.min.css"/>
     <![endif]-->
-    <script src="/js/ace-extra.min.js"></script>
+    <script src="${pageContext.request.contextPath}/js/ace-extra.min.js"></script>
     <!--[if lte IE 8]>
-    <script src="/js/html5shiv.min.js"></script>
-    <script src="/js/respond.min.js"></script>
+    <script src="${pageContext.request.contextPath}/js/html5shiv.min.js"></script>
+    <script src="${pageContext.request.contextPath}/js/respond.min.js"></script>
     <![endif]-->
 </head>
 
@@ -60,7 +60,7 @@
             <ul class="breadcrumb">
                 <li>
                     <i class="ace-icon fa fa-home home-icon"></i>
-                    <a href="/twms/index">系统首页</a>
+                    <a href="${pageContext.request.contextPath}/index">系统首页</a>
                 </li>
                 <li>
                     <a href="javascript:void(0)">工装管理</a>
@@ -79,7 +79,8 @@
 
                         <div class="row">
                             <div class="col-xs-12">
-                                <form id="searchTool" action="/twms/searchTool" method="post">
+                                <form id="searchTool" action="${pageContext.request.contextPath}/searchTool" method="post">
+                                    <input id="pageNumId" name="pageNum" type="hidden" value="1"/>
                                     <div class="table-header" style="font-size: x-large;">
                                         工装信息管理
                                     </div>
@@ -148,7 +149,7 @@
                                                         <i class="ace-icon fa fa-pencil bigger-120"></i>
                                                     </a>
 
-                                                    <a href="/twms/deleteTool?tID=${tool.getTid()}" type="button" role="button" class="btn btn-xs btn-danger" onclick="return isDelete()">
+                                                    <a href="${pageContext.request.contextPath}/deleteTool?tID=${tool.getTid()}" type="button" role="button" class="btn btn-xs btn-danger" onclick="return isDelete()">
                                                         <i class="ace-icon fa fa-trash-o bigger-120"></i>
                                                     </a>
                                                     <div id="editTool${tool.getTid()}" class="modal fade" tabindex="-1">
@@ -165,7 +166,7 @@
                                                                 </div>
 
                                                                 <div class="modal-body">
-                                                                    <form id="editTool${tool.getTid()}" class="form-horizontal"  role="form" method="post" action="/twms/editTool">
+                                                                    <form id="editTool${tool.getTid()}" class="form-horizontal"  role="form" method="post" action="${pageContext.request.contextPath}/editTool">
                                                                         <!-- #section:elements.form -->
                                                                         <div class="form-group" style="padding-top: 10px;padding-left: 120px;">
                                                                             <label class="col-sm-3 control-label no-padding-right"> 工装编号：</label>
@@ -275,7 +276,7 @@
                                     </div>
 
                                     <div class="modal-body">
-                                        <form id="toolManage" class="form-horizontal" role="form" enctype="multipart/form-data" method="post" action="/twms/addTool">
+                                        <form id="toolManage" class="form-horizontal" role="form" enctype="multipart/form-data" method="post" action="${pageContext.request.contextPath}/addTool">
                                             <!-- #section:elements.form -->
                                             <div class="form-group" style="padding-top: 10px;padding-left: 120px;">
                                                 <label class="col-sm-3 control-label no-padding-right"> 工装编号：</label>
@@ -359,7 +360,7 @@
 
                                             <div class="clearfix form-actions">
                                                 <div class="col-md-offset-3 col-md-9" style="margin-left: 100px;">
-                                                    <button class="btn btn-info" type="submit">
+                                                    <button class="btn btn-info" type="submit" onclick="return insertTool()">
                                                         <i class="ace-icon fa fa-check bigger-110"></i>
                                                         提交
                                                     </button>
@@ -394,44 +395,44 @@
 
 <!--[if !IE]> -->
 <script type="text/javascript">
-    window.jQuery || document.write("<script src='/js/jquery.min.js'>"+"<"+"/script>");
+    window.jQuery || document.write("<script src='${pageContext.request.contextPath}/js/jquery.min.js'>"+"<"+"/script>");
 </script>
 <!-- <![endif]-->
 <!--[if IE]>
 <script type="text/javascript">
-    window.jQuery || document.write("<script src='/js/jquery1x.min.js'>"+"<"+"/script>");
+    window.jQuery || document.write("<script src='${pageContext.request.contextPath}/js/jquery1x.min.js'>"+"<"+"/script>");
 </script>
 <![endif]-->
 <script type="text/javascript">
-    if('ontouchstart' in document.documentElement) document.write("<script src='/js/jquery.mobile.custom.min.js'>"+"<"+"/script>");
+    if('ontouchstart' in document.documentElement) document.write("<script src='${pageContext.request.contextPath}/js/jquery.mobile.custom.min.js'>"+"<"+"/script>");
 </script>
-<script src="/js/bootstrap.min.js"></script>
+<script src="${pageContext.request.contextPath}/js/bootstrap.min.js"></script>
 
 <!-- page specific plugin scripts -->
-<script src="/js/bootstrap-fileupload.js"></script>
+<script src="${pageContext.request.contextPath}/js/bootstrap-fileupload.js"></script>
 <!--[if lte IE 8]>
-<script src="/js/excanvas.min.js"></script>
+<script src="${pageContext.request.contextPath}/js/excanvas.min.js"></script>
 <![endif]-->
-<script src="/js/jquery-ui.custom.min.js"></script>
-<script src="/js/jquery.ui.touch-punch.min.js"></script>
-<script src="/js/chosen.jquery.min.js"></script>
-<script src="/js/fuelux/fuelux.spinner.min.js"></script>
-<script src="/js/date-time/bootstrap-datepicker.min.js"></script>
-<script src="/js/date-time/bootstrap-timepicker.min.js"></script>
-<script src="/js/date-time/moment.min.js"></script>
-<script src="/js/date-time/daterangepicker.min.js"></script>
-<script src="/js/date-time/bootstrap-datetimepicker.min.js"></script>
-<script src="/js/bootstrap-colorpicker.min.js"></script>
-<script src="/js/jquery.knob.min.js"></script>
-<script src="/js/jquery.autosize.min.js"></script>
-<script src="/js/jquery.inputlimiter.1.3.1.min.js"></script>
-<script src="/js/jquery.maskedinput.min.js"></script>
-<script src="/js/bootstrap-tag.min.js"></script>
-<script src="/js/typeahead.jquery.min.js"></script>
+<script src="${pageContext.request.contextPath}/js/jquery-ui.custom.min.js"></script>
+<script src="${pageContext.request.contextPath}/js/jquery.ui.touch-punch.min.js"></script>
+<script src="${pageContext.request.contextPath}/js/chosen.jquery.min.js"></script>
+<script src="${pageContext.request.contextPath}/js/fuelux/fuelux.spinner.min.js"></script>
+<script src="${pageContext.request.contextPath}/js/date-time/bootstrap-datepicker.min.js"></script>
+<script src="${pageContext.request.contextPath}/js/date-time/bootstrap-timepicker.min.js"></script>
+<script src="${pageContext.request.contextPath}/js/date-time/moment.min.js"></script>
+<script src="${pageContext.request.contextPath}/js/date-time/daterangepicker.min.js"></script>
+<script src="${pageContext.request.contextPath}/js/date-time/bootstrap-datetimepicker.min.js"></script>
+<script src="${pageContext.request.contextPath}/js/bootstrap-colorpicker.min.js"></script>
+<script src="${pageContext.request.contextPath}/js/jquery.knob.min.js"></script>
+<script src="${pageContext.request.contextPath}/js/jquery.autosize.min.js"></script>
+<script src="${pageContext.request.contextPath}/js/jquery.inputlimiter.1.3.1.min.js"></script>
+<script src="${pageContext.request.contextPath}/js/jquery.maskedinput.min.js"></script>
+<script src="${pageContext.request.contextPath}/js/bootstrap-tag.min.js"></script>
+<script src="${pageContext.request.contextPath}/js/typeahead.jquery.min.js"></script>
 
 <!-- ace scripts -->
-<script src="/js/ace-elements.min.js"></script>
-<script src="/js/ace.min.js"></script>
+<script src="${pageContext.request.contextPath}/js/ace-elements.min.js"></script>
+<script src="${pageContext.request.contextPath}/js/ace.min.js"></script>
 
 <!-- inline scripts related to this page -->
 <script type="text/javascript">
@@ -826,11 +827,20 @@
 
 <%--自定义JS--%>
 <script>
+    function insertTool() {
+        var roleID = "${userInfo.getRoleid()}";
+        if(roleID == 1 || roleID == 2){
+            return true;
+        }else{
+            alert("您的管理权限不够，请联系管理员！");
+            return false;
+        }
+    }
     //提交到批量导入进行处理
     function importTool(){
         var roleID = "${userInfo.getRoleid()}";
         if(roleID == 1 || roleID == 2){
-            document.getElementById('toolManage').action = "/twms/importTools";
+            document.getElementById('toolManage').action = "${pageContext.request.contextPath}/importTools";
             $("#toolManage").submit();
         }else{
             alert("您的管理权限不够，请联系管理员！");
@@ -886,7 +896,7 @@
                     return false;
                 else
                     $.ajax({
-                        url:'/twms/delCheckedTool',
+                        url:'${pageContext.request.contextPath}/delCheckedTool',
                         type:'post',
                         data:{
                             checkID:checkID.join(",")
@@ -895,7 +905,7 @@
                             if(data.success){
                                 alert(data.msg);
                             }
-                            window.location.href="/twms/searchTool";
+                            window.location.href="${pageContext.request.contextPath}/searchTool";
                         }
                     })
             }

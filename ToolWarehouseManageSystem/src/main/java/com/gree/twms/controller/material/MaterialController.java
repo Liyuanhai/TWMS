@@ -20,7 +20,7 @@ import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 
-@RequestMapping("/twms")
+
 @Controller
 public class MaterialController {
     
@@ -49,7 +49,7 @@ public class MaterialController {
                 MultipartFile multipartFile=multiRequest.getFile(iter.next().toString());
                 if(multipartFile!=null)
                 {
-                    String savePath=request.getSession().getServletContext().getRealPath("/") + "material/";
+                    String savePath="E:/twms/material/";
                     File saveFileDir = new File(savePath);
                     if (!saveFileDir.exists()) {
                         //如果文件目录不存在，创建新目录

@@ -22,7 +22,6 @@ import jxl.Sheet;
 import jxl.Workbook;
 import jxl.read.biff.BiffException;
 
-@RequestMapping("/twms")
 @Controller
 public class UserManageController {
 

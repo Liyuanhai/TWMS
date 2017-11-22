@@ -14,7 +14,7 @@ import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 
-@RequestMapping("/twms")
+
 @Controller
 public class IndexController {
 

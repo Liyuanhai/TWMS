@@ -15,9 +15,9 @@
         <!-- /section:basics/sidebar.mobile.toggle -->
         <div class="navbar-header pull-left">
             <!-- #section:basics/navbar.layout.brand -->
-            <a href="index.html" class="navbar-brand">
+            <a href="${pageContext.request.contextPath}/index" class="navbar-brand">
                 <small>
-                    <img src="/avatars/logo.png" alt=""/>
+                    <img src="${pageContext.request.contextPath}/avatars/logo.png" alt=""/>
                 </small>
             </a>
         </div>
@@ -25,125 +25,18 @@
         <div class="navbar-buttons navbar-header pull-right" role="navigation">
             <ul class="nav ace-nav">
 
-                <li class="green">
-                    <a data-toggle="dropdown" class="dropdown-toggle" href="#">
-                        <i class="ace-icon fa fa-envelope icon-animated-vertical"></i>
-                        <span class="badge badge-success">5</span>
-                    </a>
+                <%--<li class="green">--%>
+                    <%--<a data-toggle="dropdown" class="dropdown-toggle" href="#">--%>
+                        <%--<i class="ace-icon fa fa-envelope icon-animated-vertical"></i>--%>
+                        <%--<span class="badge badge-success">5</span>--%>
+                    <%--</a>--%>
 
-                    <ul class="dropdown-menu-right dropdown-navbar dropdown-menu dropdown-caret dropdown-close">
-                        <li class="dropdown-header">
-                            <i class="ace-icon fa fa-envelope-o"></i>
-                            13条未读信息
-                        </li>
-
-                        <li class="dropdown-content">
-                            <ul class="dropdown-menu dropdown-navbar">
-                                <li>
-                                    <a href="#">
-                                        <img src="/avatars/avatar.png" class="msg-photo"
-                                             alt="Alex's Avatar"/>
-                                        <span class="msg-body">
-													<span class="msg-title">
-														<span class="blue">B2C:</span>
-														系统产生20个错误，12个警告...
-													</span>
-
-													<span class="msg-time">
-														<i class="ace-icon fa fa-clock-o"></i>
-														<span>2014-12-15 18:00:00</span>
-													</span>
-												</span>
-                                    </a>
-                                </li>
-
-                                <li>
-                                    <a href="#">
-                                        <img src="/avatars/avatar3.png" class="msg-photo"
-                                             alt="Susan's Avatar"/>
-                                        <span class="msg-body">
-													<span class="msg-title">
-														<span class="blue">积分商城:</span>
-														系统产生20个错误，12个警告...
-													</span>
-
-													<span class="msg-time">
-														<i class="ace-icon fa fa-clock-o"></i>
-														<span>2014-12-15 18:00:00</span>
-													</span>
-												</span>
-                                    </a>
-                                </li>
-
-                                <li>
-                                    <a href="#">
-                                        <img src="/avatars/avatar4.png" class="msg-photo"
-                                             alt="Bob's Avatar"/>
-                                        <span class="msg-body">
-													<span class="msg-title">
-														<span class="blue">政府机票采购:</span>
-														系统产生20个错误，12个警告...
-													</span>
-
-													<span class="msg-time">
-														<i class="ace-icon fa fa-clock-o"></i>
-														<span>2014-12-15 18:00:00</span>
-													</span>
-												</span>
-                                    </a>
-                                </li>
-
-                                <li>
-                                    <a href="#">
-                                        <img src="/avatars/avatar2.png" class="msg-photo"
-                                             alt="Kate's Avatar"/>
-                                        <span class="msg-body">
-													<span class="msg-title">
-														<span class="blue">B2B:</span>
-														系统产生20个错误，12个警告...
-													</span>
-
-													<span class="msg-time">
-														<i class="ace-icon fa fa-clock-o"></i>
-														<span>2014-12-15 18:00:00</span>
-													</span>
-												</span>
-                                    </a>
-                                </li>
-
-                                <li>
-                                    <a href="#">
-                                        <img src="/avatars/avatar5.png" class="msg-photo"
-                                             alt="Fred's Avatar"/>
-                                        <span class="msg-body">
-													<span class="msg-title">
-														<span class="blue">货运系统:</span>
-														系统产生20个错误，12个警告...
-													</span>
-
-													<span class="msg-time">
-														<i class="ace-icon fa fa-clock-o"></i>
-														<span>2014-12-15 18:00:00</span>
-													</span>
-												</span>
-                                    </a>
-                                </li>
-                            </ul>
-                        </li>
-
-                        <li class="dropdown-footer">
-                            <a href="inbox.html">
-                                查看全部消息
-                                <i class="ace-icon fa fa-arrow-right"></i>
-                            </a>
-                        </li>
-                    </ul>
-                </li>
+                   <%--</li>--%>
 
                 <!-- #section:basics/navbar.user_menu -->
                 <li class="light-blue">
                     <a data-toggle="dropdown" href="#" class="dropdown-toggle">
-                        <img class="nav-user-photo" src="/avatars/user.jpg" alt="Jason's Photo"/>
+                        <img class="nav-user-photo" src="${pageContext.request.contextPath}/avatars/user.jpg" alt="用户头像"/>
                         <span class="user-info">
 									欢迎您<br/>
 									${userInfo.getPname()}
@@ -163,7 +56,7 @@
                         <li class="divider"></li>
 
                         <li>
-                            <a href="/twms/loginOut">
+                            <a href="${pageContext.request.contextPath}/loginOut">
                                 <i class="ace-icon fa fa-power-off"></i>
                                 退出
                             </a>
@@ -189,7 +82,7 @@
                     </div>
 
                     <div class="modal-body">
-                        <form id="editPwd" class="form-horizontal" role="form" method="post" action="/twms/editPassword">
+                        <form id="editPwd" class="form-horizontal" role="form" method="post" action="${pageContext.request.contextPath}/editPassword">
                             <!-- #section:elements.form -->
                             <div class="form-group"
                                  style="padding-top: 10px;padding-left: 120px;">
@@ -262,7 +155,7 @@
         }else if(p1.value != '' && p2.value!=''){
             if(p1.value == p2.value){
                 $.ajax({
-                    url:'/twms/editPassword',
+                    url:'${pageContext.request.contextPath}/editPassword',
                     type:'post',
                     data:{
                         oldPassword:p.value,

@@ -16,25 +16,25 @@
     <meta name="description" content="This is page-header (.page-header &gt; h1)" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0" />
 
-    <link rel="stylesheet" href="/css/bootstrap.min.css" />
-    <link rel="stylesheet" href="/css/font-awesome.min.css" />
-    <link rel="stylesheet" href="/css/ace.min.css" id="main-ace-style" />
-    <link rel="stylesheet" href="/css/bootstrap-fileupload.min.css"/>
-    <link rel="stylesheet" href="/css/datepicker.css" />
-    <link rel="stylesheet" href="/css/bootstrap-timepicker.css" />
-    <link rel="stylesheet" href="/css/daterangepicker.css" />
-    <link rel="stylesheet" href="/css/bootstrap-datetimepicker.css" />
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/css/font-awesome.min.css" />
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/css/ace.min.css" id="main-ace-style" />
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/css/bootstrap-fileupload.min.css"/>
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/css/datepicker.css" />
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/css/bootstrap-timepicker.css" />
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/css/daterangepicker.css" />
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/css/bootstrap-datetimepicker.css" />
     <!--[if lte IE 9]>
-    <link rel="stylesheet" href="/css/ace-part2.min.css" />
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/css/ace-part2.min.css" />
     <![endif]-->
-    <link rel="stylesheet" href="/css/ace-skins.min.css" />
-    <link rel="stylesheet" href="/css/ace-rtl.min.css" />
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/css/ace-skins.min.css" />
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/css/ace-rtl.min.css" />
     <!--[if lte IE 9]>
-    <link rel="stylesheet" href="/css/ace-ie.min.css" />
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/css/ace-ie.min.css" />
     <![endif]-->
     <!--[if lte IE 8]>
-    <script src="/js/html5shiv.min.js"></script>
-    <script src="/js/respond.min.js"></script>
+    <script src="${pageContext.request.contextPath}/js/html5shiv.min.js"></script>
+    <script src="${pageContext.request.contextPath}/js/respond.min.js"></script>
     <![endif]-->
 </head>
 
@@ -51,7 +51,7 @@
             <ul class="breadcrumb">
                 <li>
                     <i class="ace-icon fa fa-home home-icon"></i>
-                    <a href="/twms/index">系统首页</a>
+                    <a href="${pageContext.request.contextPath}/index">系统首页</a>
                 </li>
                 <li>
                     <a href="javascript:void(0)">工装评审</a>
@@ -69,7 +69,7 @@
                         <div class="table-header" style="font-size: x-large;">
                             填写工装评审表
                         </div>
-                        <form id="addReview" class="form-horizontal" style="padding-top: 20px;" role="form" method="post" enctype="multipart/form-data" action="/twms/addToolReview">
+                        <form id="addReview" class="form-horizontal" style="padding-top: 20px;" role="form" method="post" enctype="multipart/form-data" action="${pageContext.request.contextPath}/addToolReview">
                             <div class="form-group">
                                 <label class="col-sm-3 control-label no-padding-right" > 工装名称：</label>
 
@@ -171,7 +171,7 @@
                                 <label class="col-sm-3 control-label no-padding-right">上传附件： </label>
                                 <div class="fileupload fileupload-new col-xs-12 col-sm-9" data-provides="fileupload" style="display: inline-block;">
                                          <span class="btn-file btn btn-primary" style="font-size: small;height: 35px;">
-                                             <span class="fileupload-new ">导入库存信息</span>
+                                             <span class="fileupload-new ">上传附件</span>
                                              <span class="fileupload-exists">更改文件</span>
                                              <input type="file" name="file">
                                          </span>
@@ -191,7 +191,7 @@
 
                             <div class="clearfix form-actions">
                                 <div class="col-md-offset-3 col-md-9">
-                                    <button class="btn btn-info" type="submit">
+                                    <button class="btn btn-info" type="submit" onclick="return checkSize()">
                                         <i class="ace-icon fa fa-check bigger-110"></i>
                                         立即提交
                                     </button>
@@ -214,44 +214,44 @@
 </div>
 <!--[if !IE]> -->
 <script type="text/javascript">
-    window.jQuery || document.write("<script src='/js/jquery.min.js'>"+"<"+"/script>");
+    window.jQuery || document.write("<script src='${pageContext.request.contextPath}/js/jquery.min.js'>"+"<"+"/script>");
 </script>
 <!-- <![endif]-->
 <!--[if IE]>
 <script type="text/javascript">
-    window.jQuery || document.write("<script src='/js/jquery1x.min.js'>"+"<"+"/script>");
+    window.jQuery || document.write("<script src='${pageContext.request.contextPath}/js/jquery1x.min.js'>"+"<"+"/script>");
 </script>
 <![endif]-->
 <script type="text/javascript">
-    if('ontouchstart' in document.documentElement) document.write("<script src='/js/jquery.mobile.custom.min.js'>"+"<"+"/script>");
+    if('ontouchstart' in document.documentElement) document.write("<script src='${pageContext.request.contextPath}/js/jquery.mobile.custom.min.js'>"+"<"+"/script>");
 </script>
-<script src="/js/bootstrap.min.js"></script>
+<script src="${pageContext.request.contextPath}/js/bootstrap.min.js"></script>
 
 <!-- page specific plugin scripts -->
-<script src="/js/bootstrap-fileupload.js"></script>
+<script src="${pageContext.request.contextPath}/js/bootstrap-fileupload.js"></script>
 <!--[if lte IE 8]>
-<script src="/js/excanvas.min.js"></script>
+<script src="${pageContext.request.contextPath}/js/excanvas.min.js"></script>
 <![endif]-->
-<script src="/js/jquery-ui.custom.min.js"></script>
-<script src="/js/jquery.ui.touch-punch.min.js"></script>
-<script src="/js/chosen.jquery.min.js"></script>
-<script src="/js/fuelux/fuelux.spinner.min.js"></script>
-<script src="/js/date-time/bootstrap-datepicker.min.js"></script>
-<script src="/js/date-time/bootstrap-timepicker.min.js"></script>
-<script src="/js/date-time/moment.min.js"></script>
-<script src="/js/date-time/daterangepicker.min.js"></script>
-<script src="/js/date-time/bootstrap-datetimepicker.min.js"></script>
-<script src="/js/bootstrap-colorpicker.min.js"></script>
-<script src="/js/jquery.knob.min.js"></script>
-<script src="/js/jquery.autosize.min.js"></script>
-<script src="/js/jquery.inputlimiter.1.3.1.min.js"></script>
-<script src="/js/jquery.maskedinput.min.js"></script>
-<script src="/js/bootstrap-tag.min.js"></script>
-<script src="/js/typeahead.jquery.min.js"></script>
+<script src="${pageContext.request.contextPath}/js/jquery-ui.custom.min.js"></script>
+<script src="${pageContext.request.contextPath}/js/jquery.ui.touch-punch.min.js"></script>
+<script src="${pageContext.request.contextPath}/js/chosen.jquery.min.js"></script>
+<script src="${pageContext.request.contextPath}/js/fuelux/fuelux.spinner.min.js"></script>
+<script src="${pageContext.request.contextPath}/js/date-time/bootstrap-datepicker.min.js"></script>
+<script src="${pageContext.request.contextPath}/js/date-time/bootstrap-timepicker.min.js"></script>
+<script src="${pageContext.request.contextPath}/js/date-time/moment.min.js"></script>
+<script src="${pageContext.request.contextPath}/js/date-time/daterangepicker.min.js"></script>
+<script src="${pageContext.request.contextPath}/js/date-time/bootstrap-datetimepicker.min.js"></script>
+<script src="${pageContext.request.contextPath}/js/bootstrap-colorpicker.min.js"></script>
+<script src="${pageContext.request.contextPath}/js/jquery.knob.min.js"></script>
+<script src="${pageContext.request.contextPath}/js/jquery.autosize.min.js"></script>
+<script src="${pageContext.request.contextPath}/js/jquery.inputlimiter.1.3.1.min.js"></script>
+<script src="${pageContext.request.contextPath}/js/jquery.maskedinput.min.js"></script>
+<script src="${pageContext.request.contextPath}/js/bootstrap-tag.min.js"></script>
+<script src="${pageContext.request.contextPath}/js/typeahead.jquery.min.js"></script>
 
 <!-- ace scripts -->
-<script src="/js/ace-elements.min.js"></script>
-<script src="/js/ace.min.js"></script>
+<script src="${pageContext.request.contextPath}/js/ace-elements.min.js"></script>
+<script src="${pageContext.request.contextPath}/js/ace.min.js"></script>
 
 <!-- inline scripts related to this page -->
 <script type="text/javascript">
@@ -646,6 +646,19 @@
 
 <%--自定义JS--%>
 <script>
+
+    //检查上传文件大小
+    function checkSize() {
+        var fileData = file.files[0];
+        var fileSize = fileData.size;
+        var maxSize = 5 * 1024 * 1024;
+        if(fileSize > maxSize){
+            alert("上传的文件不能大于5Mb！");
+            return false;
+        }else {
+            return true;
+        }
+    }
 
     //弹窗提示框
     function alertMsg() {

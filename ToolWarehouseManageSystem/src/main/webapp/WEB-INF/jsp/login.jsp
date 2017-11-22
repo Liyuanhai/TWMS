@@ -13,11 +13,11 @@
     <title>登录</title>
     <meta name="description" content="Restyling jQuery UI Widgets and Elements" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0" />
-    <link rel="stylesheet" href="/css/bootstrap.min.css" />
-    <link rel="stylesheet" href="/css/font-awesome.min.css" />
-    <link rel="stylesheet" href="/css/ace-fonts.css" />
-    <link rel="stylesheet" href="/css/ace.min.css" id="main-ace-style" />
-    <script src="/js/ace-extra.min.js"></script>
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/css/font-awesome.min.css" />
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/css/ace-fonts.css" />
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/css/ace.min.css" id="main-ace-style" />
+    <script src="${pageContext.request.contextPath}/js/ace-extra.min.js"></script>
 </head>
 <body class="login-layout blur-login">
 <div class="main-container">
@@ -40,7 +40,7 @@
 
                                     <div class="space-6"></div>
 
-                                    <form id="user" action="\twms\logging" method="post">
+                                    <form id="user" action="${pageContext.request.contextPath}\logging" method="post">
                                         <fieldset>
                                             <label class="block clearfix">
 														<span class="block input-icon input-icon-right">
@@ -95,18 +95,18 @@
 
 <!--[if !IE]> -->
 <script type="text/javascript">
-    window.jQuery || document.write("<script src='../assets/js/jquery.min.js'>"+"<"+"/script>");
+    window.jQuery || document.write("<script src='${pageContext.request.contextPath}/js/jquery.min.js'>"+"<"+"/script>");
 </script>
 
 <!-- <![endif]-->
 
 <!--[if IE]>
 <script type="text/javascript">
-    window.jQuery || document.write("<script src='assets/js/jquery1x.min.js'>"+"<"+"/script>");
+    window.jQuery || document.write("<script src='${pageContext.request.contextPath}/js/jquery1x.min.js'>"+"<"+"/script>");
 </script>
 <![endif]-->
 <script type="text/javascript">
-    if('ontouchstart' in document.documentElement) document.write("<script src='../assets/js/jquery.mobile.custom.min.js'>"+"<"+"/script>");
+    if('ontouchstart' in document.documentElement) document.write("<script src='${pageContext.request.contextPath}/js/jquery.mobile.custom.min.js'>"+"<"+"/script>");
 </script>
 
 <!-- inline scripts related to this page -->

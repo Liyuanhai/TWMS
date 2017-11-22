@@ -12,7 +12,7 @@
         <ul class="nav nav-list">
 
             <li class="">
-                <a href="/twms/index">
+                <a href="${pageContext.request.contextPath}/index">
                     <i class="menu-icon fa fa-home"></i>
                     <span class="menu-text"> 首&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;页 </span>
                 </a>
@@ -21,7 +21,7 @@
             </li>
 
             <li class="">
-                <a href="/twms/searchUser">
+                <a href="${pageContext.request.contextPath}/searchUser">
                     <i class="menu-icon fa fa-users"></i>
                     <span class="menu-text"> 用户管理 </span>
                 </a>
@@ -30,7 +30,7 @@
             </li>
 
             <li class="">
-                <a href="/twms/searchWarehouse">
+                <a href="${pageContext.request.contextPath}/searchWarehouse">
                     <i class="menu-icon fa fa-inbox"></i>
                     <span class="menu-text"> 仓库管理 </span>
                 </a>
@@ -50,7 +50,7 @@
 
                 <ul class="submenu">
                     <li class="">
-                        <a href="/twms/tool-review">
+                        <a href="${pageContext.request.contextPath}/tool-review">
                             <i class="menu-icon fa fa-caret-right"></i>
                             工装评审
                         </a>
@@ -59,7 +59,7 @@
                     </li>
 
                     <li class="">
-                        <a href="/twms/tool-repair">
+                        <a href="${pageContext.request.contextPath}/tool-repair">
                             <i class="menu-icon fa fa-caret-right"></i>
                             工装维修
                         </a>
@@ -68,7 +68,7 @@
                     </li>
 
                     <li class="">
-                        <a href="/twms/version-update">
+                        <a href="${pageContext.request.contextPath}/version-update">
                             <i class="menu-icon fa fa-caret-right"></i>
                             版本升级
                         </a>
@@ -77,7 +77,7 @@
                     </li>
 
                     <li class="">
-                        <a href="/twms/material-info">
+                        <a href="${pageContext.request.contextPath}/material-info">
                             <i class="menu-icon fa fa-caret-right"></i>
                             物料信息
                         </a>
@@ -86,7 +86,7 @@
                     </li>
 
                     <li class="">
-                        <a href="/twms/searchTool">
+                        <a href="${pageContext.request.contextPath}/searchTool">
                             <i class="menu-icon fa fa-caret-right"></i>
                             工装信息管理
                         </a>
@@ -108,7 +108,7 @@
 
                 <ul class="submenu">
                     <li class="">
-                        <a href="/twms/searchAccount">
+                        <a href="${pageContext.request.contextPath}/searchAccount">
                             <i class="menu-icon fa fa-caret-right"></i>
                             出入库台帐
                         </a>
@@ -117,7 +117,7 @@
                     </li>
 
                     <li class="">
-                        <a href="/twms/searchReview">
+                        <a href="${pageContext.request.contextPath}/searchReview">
                             <i class="menu-icon fa fa-caret-right"></i>
                             评审表台帐
                         </a>
@@ -126,7 +126,7 @@
                     </li>
 
                     <li class="">
-                        <a href="/twms/searchRepair">
+                        <a href="${pageContext.request.contextPath}/searchRepair">
                             <i class="menu-icon fa fa-caret-right"></i>
                             维修记录台帐
                         </a>
@@ -135,7 +135,7 @@
                     </li>
 
                     <li class="">
-                        <a href="/twms/searchVersion">
+                        <a href="${pageContext.request.contextPath}/searchVersion">
                             <i class="menu-icon fa fa-caret-right"></i>
                             版本升级台帐
                         </a>
@@ -144,7 +144,7 @@
                     </li>
 
                     <li class="">
-                        <a href="/twms/searchMaterial">
+                        <a href="${pageContext.request.contextPath}/searchMaterial">
                             <i class="menu-icon fa fa-caret-right"></i>
                             物料信息台帐
                         </a>

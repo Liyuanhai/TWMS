@@ -16,21 +16,21 @@
     <title>维修记录台帐</title>
     <meta name="description" content="Restyling jQuery UI Widgets and Elements"/>
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0"/>
-    <link rel="stylesheet" href="/css/bootstrap.min.css"/>
-    <link rel="stylesheet" href="/css/font-awesome.min.css"/>
-    <link rel="stylesheet" href="/css/ace-fonts.css"/>
-    <link rel="stylesheet" href="/css/ace.min.css" id="main-ace-style"/>
-    <link rel="stylesheet" href="/css/bootstrap-fileupload.min.css"/>
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/css/bootstrap.min.css"/>
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/css/font-awesome.min.css"/>
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/css/ace-fonts.css"/>
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/css/ace.min.css" id="main-ace-style"/>
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/css/bootstrap-fileupload.min.css"/>
     <!--[if lte IE 9]>
-    <link rel="stylesheet" href="/css/ace-part2.min.css"/>
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/css/ace-part2.min.css"/>
     <![endif]-->
     <!--[if lte IE 9]>
-    <link rel="stylesheet" href="/css/ace-ie.min.css"/>
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/css/ace-ie.min.css"/>
     <![endif]-->
-    <script src="/js/ace-extra.min.js"></script>
+    <script src="${pageContext.request.contextPath}/js/ace-extra.min.js"></script>
     <!--[if lte IE 8]>
-    <script src="/js/html5shiv.min.js"></script>
-    <script src="/js/respond.min.js"></script>
+    <script src="${pageContext.request.contextPath}/js/html5shiv.min.js"></script>
+    <script src="${pageContext.request.contextPath}/js/respond.min.js"></script>
     <![endif]-->
 </head>
 <%--分页--%>
@@ -54,7 +54,7 @@
             <ul class="breadcrumb">
                 <li>
                     <i class="ace-icon fa fa-home home-icon"></i>
-                    <a href="/twms/index">系统首页</a>
+                    <a href="${pageContext.request.contextPath}/index">系统首页</a>
                 </li>
                 <li>
                     <a href="javascript:void(0)">维修记录台帐</a>
@@ -73,7 +73,7 @@
 
                         <div class="row">
                             <div class="col-xs-12">
-                                <form id="searchRepair" action="/twms/searchRepair" method="post">
+                                <form id="searchRepair" action="${pageContext.request.contextPath}/searchRepair" method="post">
                                     <input id="pageNumId" name="pageNum" type="hidden" value="1"/>
                                 <div class="table-header" style="font-size: x-large;">
                                     维修记录台帐管理
@@ -156,7 +156,7 @@
                                                 <td>${repair.getHandmeasures()}</td>
                                                 <td>${repair.getRemark()}</td>
                                                 <td>
-                                                    <a href="/twms/deleteRepair?id=${repair.getId()}" type="button" role="button" class="btn btn-xs btn-danger" onclick="return isDelete()">
+                                                    <a href="${pageContext.request.contextPath}/deleteRepair?id=${repair.getId()}" type="button" role="button" class="btn btn-xs btn-danger" onclick="return isDelete()">
                                                         <i class="ace-icon fa fa-trash-o bigger-120"></i>
                                                     </a>
                                                 </td>
@@ -181,30 +181,30 @@
 </div>
 
 <!-- basic scripts -->
-<script src="/js/typeahead.jquery.min.js"></script>
+<script src="${pageContext.request.contextPath}/js/typeahead.jquery.min.js"></script>
 <!--[if !IE]> -->
 <script type="text/javascript">
-    window.jQuery || document.write("<script src='/js/jquery.min.js'>" + "<" + "/script>");
+    window.jQuery || document.write("<script src='${pageContext.request.contextPath}/js/jquery.min.js'>" + "<" + "/script>");
 </script>
 
 <!-- <![endif]-->
 
 <!--[if IE]>
 <script type="text/javascript">
-    window.jQuery || document.write("<script src='/js/jquery1x.min.js'>" + "<" + "/script>");
+    window.jQuery || document.write("<script src='${pageContext.request.contextPath}/js/jquery1x.min.js'>" + "<" + "/script>");
 </script>
 <![endif]-->
 <script type="text/javascript">
-    if ('ontouchstart' in document.documentElement) document.write("<script src='/js/jquery.mobile.custom.min.js'>" + "<" + "/script>");
+    if ('ontouchstart' in document.documentElement) document.write("<script src='${pageContext.request.contextPath}/js/jquery.mobile.custom.min.js'>" + "<" + "/script>");
 </script>
-<script src="/js/bootstrap.min.js"></script>
+<script src="${pageContext.request.contextPath}/js/bootstrap.min.js"></script>
 
 <!-- page specific plugin scripts -->
 
 <!-- ace scripts -->
-<script src="/js/ace-elements.min.js"></script>
-<script src="/js/ace.min.js"></script>
-<script src="/js/bootstrap-fileupload.js"></script>
+<script src="${pageContext.request.contextPath}/js/ace-elements.min.js"></script>
+<script src="${pageContext.request.contextPath}/js/ace.min.js"></script>
+<script src="${pageContext.request.contextPath}/js/bootstrap-fileupload.js"></script>
 <%--自定义JS--%>
 <script>
 
@@ -255,7 +255,7 @@
                     return false;
                 else
                     $.ajax({
-                        url:'/twms/delCheckedRepair',
+                        url:'${pageContext.request.contextPath}/delCheckedRepair',
                         type:'post',
                         data:{
                             checkID:checkID.join(",")
@@ -264,7 +264,7 @@
                             if(data.success){
                                 alert(data.msg);
                             }
-                            window.location.href="/twms/searchRepair";
+                            window.location.href="${pageContext.request.contextPath}/searchRepair";
                         }
                     })
             }

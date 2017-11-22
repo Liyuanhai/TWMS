@@ -21,7 +21,7 @@ import java.util.Map;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-@RequestMapping("/twms")
+
 @Controller
 public class ToolReviewController {
 
@@ -49,7 +49,7 @@ public class ToolReviewController {
                 MultipartFile multipartFile=multiRequest.getFile(iter.next().toString());
                 if(multipartFile!=null)
                 {
-                    String savePath=request.getSession().getServletContext().getRealPath("/") + "review/";
+                    String savePath="E:/twms/review/";
                     String filePath=savePath + multipartFile.getOriginalFilename();
                     File saveFileDir = new File(savePath);
                     if (!saveFileDir.exists()) {
